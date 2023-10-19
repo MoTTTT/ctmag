@@ -31,6 +31,15 @@ Save Test As&nbsp; &lt;Ctrl + a> - Open a FileDialog to allow a file to
 be saved as a specified filename in a specified directory.</LI>
 
 <LI>
+Generate Text File &lt;Ctrl + g> -&nbsp; Open a FileDialog to allow a text
+file of the magnetisation curve test to be saved. This file will contain
+the general settings and the CT settings. The voltage and current data
+points for all three phases as well as the main curve would be included
+with the measured kneepoints indicated. This text file can be imported
+into a spreadsheet such as Excel (delimited text file with the limiters
+being spaces).</LI>
+
+<LI>
 Print Report&nbsp; &lt;Ctrl + p> - Open a TestReportDialog to allow a file
 to be printed if so selected.</LI>
 
@@ -63,7 +72,31 @@ box )
 <OL>
 <LI>
 Select COM port: COM1 or COM2 - Select the serial communications port of
-the PC to which the&nbsp;&nbsp;&nbsp; PROMET unit is connected.</LI>
+the PC to which the&nbsp;&nbsp;&nbsp; PROMET sensing unit is connected.</LI>
+
+<LI>
+Select Magcurve channels: Select the voltage and current input channels
+for the magnetisation curve test.</LI>
+
+<LI>
+Draw upsweep: Include the characteristic curve for the CT when it was initially
+magnetised.</LI>
+
+<LI>
+Draw real time: Draw the characteristic curve for the CT while the test
+is being conducted.</LI>
+
+<LI>
+Real Time Draw Area (10% - 100%): Specify the scaling of the real time
+curve on the maincanvas.</LI>
+
+<LI>
+Cs fullscale current (mA): Specify the fullscale current reading on the
+Cs channel.</LI>
+
+<LI>
+Mag Voltage Multiplication Factor: A multiplication factor to apply to
+all voltage readings for the magnetisation curve test.</LI>
 
 <LI>
 Time Out Threshold (ms) - Specifies the time out period if serial communictions
@@ -71,22 +104,23 @@ with the PROMET unit is not established on activation of a test procedure.&nbsp;
 Note that this value is specified in milliseconds.</LI>
 
 <LI>
-Mag Volt Threshold (V) - Specifies the maximum voltage threshold at which
-the magnetisation curve test would be aborted.</LI>
+Mag Volt Threshold (V at sensor) - Specifies the maximum voltage threshold
+at which the magnetisation curve test would be aborted.</LI>
 
 <LI>
-Mag Current Threshold (mA) - Specifies the maximum current threshold at
-which the magnetisation curve test would be aborted.&nbsp; Note that this
-value is specified in mA.</LI>
+Mag Current Threshold (mA at sensor) - Specifies the maximum current threshold
+at which the magnetisation curve test would be aborted.&nbsp; Note that
+this value is specified in mA.</LI>
 
 <LI>
-Voltage Ratio threshold (V) - Specifies the maximum measured voltage threshold
-for the primary winding at which the voltage ratio test would be completed.</LI>
+Voltage Ratio threshold (V at Vp) - Specifies the maximum measured voltage
+threshold for the primary winding at which the voltage ratio test would
+be completed.</LI>
 
 <LI>
-Current Ratio threshold (mA) - Specifies the maximum measured current threshold
-for the primary winding at which the current ratio test would be completed.&nbsp;
-Note that this value is specified in mA.</LI>
+Current Ratio threshold (mA at Cp) - Specifies the maximum measured current
+threshold for the primary winding at which the current ratio test would
+be completed.&nbsp; Note that this value is specified in mA.</LI>
 </OL>
 &nbsp;</DIR>
 </DIR>

@@ -1,0 +1,126 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Author" CONTENT="M.J.Colley">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.04 [en] (Win95; I) [Netscape]">
+   <TITLE>optionsdialog</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EE" VLINK="#551A8B" ALINK="#FF0000">
+<B>OPTIONS DIALOG</B>
+
+<P><B>SELECT COM PORT:</B>
+<BR>Select either COM1 or COM2 for serial communications with the PROMET
+sensing unit by means of radiobuttons. The default setting is COM1.
+
+<P><B>SELECT MAGCURVE CHANNELS:</B>
+<BR>Offers the selection of four probable combinations of voltage and current
+input channels for the magnetisation curve test.
+<UL>
+<LI>
+Vs - Cs : Vs = voltage channel , Cs = current channel</LI>
+
+<LI>
+Vp - Cs : Vp = voltage channel, Cs = current channel</LI>
+
+<LI>
+Vs - Cp : Vs = voltage channel, Cp = current channel</LI>
+
+<LI>
+Vp - Cp : Vp = voltage channel, Cp = current channel</LI>
+</UL>
+<B>DRAW UPSWEEP:</B>
+<BR>Selection box option allows for the drawing of the characteristic curve
+for the CT on both the upsweep and downsweep of the variac i.e. when the
+injected current into the CT are increased until the magnetisation effect
+reaches saturation point and then decreased so that the magnetisation effect
+decays. The industry standard is to draw the characteristic curve and calculate
+the kneepoint for the CT on the downsweep when the magnetisation effect
+decays since this is inherently more stable than the upsweep. When the
+upsweep drawing option is selected, both the upsweep and downsweep characteristic
+curve would be displayed in the maincurve&nbsp; ("CT Magnetisation Curve")
+canvas. If the curves are drawn real time, both would initially be drawn
+in black. When the end of test is reached the curves would be redrawn with
+the upsweep drawn in green and the downsweep in black. Note that when the
+curve gets allocated to one of the three phases, only the down curve gets
+redrawn in the "3 Phase CT Magnetisation Curve" canvas.
+
+<P><B>DRAW REAL TIME:</B>
+<BR>Selection box option allows for the real time drawing of the magnetisation
+curve for the CT. The maincurve would thus be drawn in the "CT Magnetisation
+Curve" canvas as the magnetisation curve test is being conducted. Note
+that if the "Draw Upsweep" option was not selected then the real time drawing
+would only commence after the kneepoint have been detected and the variac
+is turned down, the injected current into the CT is decreased.
+
+<P><B>REAL TIME DRAW AREA (10% - 100%):</B>
+<BR>Specify the dimensions of the real time displayed curve in the "CT
+Magnetisation Curve" canvas. The default is a 100 percent which implies
+that the real time curve would be displayed in scale to the maximum settings
+for the selected voltage and current channels for the CT Magnetisation
+curve test. Adjust the selected value between 10 and a 100 percent to obtain
+the best results when the real time drawing option is activated. If the
+drawn real time curve is too small, decrease the value. If the displayed
+real time curve is visibly cut-off, increase the set value.
+
+<P><B>Cs FULLSCALE CURRENT (mA):</B>
+<BR>Allows the user to specify the Cs channel fullscale current in mA (enter
+an integer value). The user should review the Mag Current Thresholds when
+he has modified the Cs fullscale settings.
+
+<P><B>MAG VOLTAGE MULTIPLICATION FACTOR:</B>
+<BR>Allows the user to enter a voltage multiplication factor for the specified
+voltage channel of the magnetisation curve test. This multiplication factor
+would be used in all displayed results of the magnetisation curve test.
+The measured channel values displayed in the statustextfield (while test
+are running), reflects this multiplication factor. This setting can be
+entered either as an integer or floating point value.
+
+<P><B>TIME OUT THRESHOLD (ms):</B>
+<BR>Sets the time threshold for the serial communications port. If serial
+communications are not received in the specified time period then the test
+is aborted. The time period is specified in milliseconds(ms). The default
+is 10000ms which is 10 seconds.
+<BR>&nbsp;
+<BR><B>MAG VOLTAGE THRESHOLD (V at sensor):</B>
+<BR>Specify a voltage reading for the selected magnetisation curve test
+channel at which the test would be aborted. Note that this is for a set
+voltage reading measured at the sensor which&nbsp; implies that voltage
+multiplication factors are ignored in this setting. If the Vs channel is
+selected for the magnetisation curve test, the maximum sensor reading for
+this channel is 500V and the operator wants the test to be aborted when
+a reading of 495V is measured by this sensor then a setting of 495 should
+be entered in the field irrespective of voltage multiplication factor settings.
+If a voltage multiplication factor of 2.0 applies to this test then the
+test would be aborted at a displayed reading of 990V for the Vs channel
+in the status textfield (the status textfield displays the value for the
+voltage channel with the voltage multiplication factor taken into account).
+
+<P><B>MAG CURRENT THRESHOLD (mA at sensor):</B>
+<BR>Specify a current reading for the selected magnetisation curve test
+channel at which the test would be aborted. When modifying the Cs channel
+setting, this setting should be reviewed to determine whether it is still
+an appropriate setting. Note that this setting is in milliamperes.
+
+<P><B>VOLTAGE RATIO THRESHOLD (V at Vp):</B>
+<BR>This threshold determines when the voltage ratio test completes. Note
+that it is only applicable to the voltage measured at the Vp channel and
+that the specified voltage multiplication factors only apply to the magnetisation
+curve test and not to the voltage ratio test.
+
+<P><B>CURRENT RATIO THRESHOLD (mA at Cp):</B>
+<BR>This threshold determines when the current ratio test completes. Note
+that it is only applicable to the current measured at the Cp channel.
+
+<P><B>OK BUTTON:</B>
+<BR>Enter the settings displayed in the OptionDialog fields. If the entered
+values do not conform to the specific criteria for the field the application
+would revert to default settings. It is advisable to check the options
+settings before running a test to determine if the accepted optionsettings
+conform to expectations.
+
+<P><B>CANCEL BUTTON:</B>
+<BR>Ignore the current OptionsDialog settings.
+
+<P>*When starting the application default settings are instantiated.
+</BODY>
+</HTML>

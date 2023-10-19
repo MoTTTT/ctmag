@@ -1,0 +1,494 @@
+
+/**
+ * Title:        CT Mag Test Reporter<p>
+ * Description:  <p>
+ * Copyright:    Copyright (c) M.J.Colley<p>
+ * Company:      Q Solutions<p>
+ * @author M.J.Colley
+ * @version 1.0
+ */
+package ctmagrep;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.border.*;
+
+public class ReportFrame extends JFrame {
+  ReportEngine engine = new ReportEngine();
+
+  JMenuBar menuBar1 = new JMenuBar();
+  JMenu menuFile = new JMenu();
+  JMenu menuHelp = new JMenu();
+  JMenuItem menuFileExit = new JMenuItem();
+  JMenuItem menuHelpAbout = new JMenuItem();
+  JToolBar toolBar = new JToolBar();
+
+  JPanel contentPane;
+  JPanel Report = new JPanel();
+  JPanel header = new JPanel();
+  JPanel dateTime = new JPanel();
+  JPanel settings = new JPanel();
+  JPanel genSetPanel = new JPanel();
+  JPanel vtSetPanel = new JPanel();
+  JPanel ctSetPanel = new JPanel();
+  JPanel data = new JPanel();
+  JPanel results = new JPanel();
+  JPanel signature = new JPanel();
+  JPanel voltageRatio = new JPanel();
+  JPanel currentRatio = new JPanel();
+  JPanel kneepoints = new JPanel();
+  JPanel heading = new JPanel();
+  JPanel kneedata = new JPanel();
+  JPanel curve = new JPanel();
+  JLabel testerLabel = new JLabel();
+  JLabel statusBar = new JLabel();
+  JLabel DateLabel = new JLabel();
+  JLabel TimeLabel = new JLabel();
+  JLabel signLabel = new JLabel();
+  JLabel signDateLabel = new JLabel();
+  JLabel title = new JLabel();
+  JTextField DateField = new JTextField();
+  JTextField TimeField = new JTextField();
+  JTextField testerField = new JTextField();
+  JTextField signField = new JTextField();
+  JTextField signDateField = new JTextField();
+  JButton openButton = new JButton();
+  JButton saveButton = new JButton();
+  JButton jButton3 = new JButton();
+  JButton jButton4 = new JButton();
+
+  BorderLayout borderLayout1 = new BorderLayout();
+  CardLayout cardLayout1 = new CardLayout();
+  CardLayout cardLayout2 = new CardLayout();
+  CardLayout cardLayout3 = new CardLayout();
+  CardLayout cardLayout4 = new CardLayout();
+  CardLayout cardLayout5 = new CardLayout();
+  CardLayout cardLayout6 = new CardLayout();
+  CardLayout cardLayout7 = new CardLayout();
+  GridBagLayout gridBagLayout1 = new GridBagLayout();
+  GridBagLayout gridBagLayout2 = new GridBagLayout();
+  GridBagLayout gridBagLayout3 = new GridBagLayout();
+  GridLayout gridLayout1 = new GridLayout();
+  GridLayout gridLayout2 = new GridLayout();
+  GridLayout gridLayout3 = new GridLayout();
+  GridLayout gridLayout4 = new GridLayout();
+  GridLayout gridLayout5 = new GridLayout();
+
+  Border border1;
+  Border border2;
+  Border border3;
+  Color color1;
+  ImageIcon image1;
+  ImageIcon image2;
+  ImageIcon image3;
+  TitledBorder titledBorder1;
+  TitledBorder titledBorder2;
+  TitledBorder titledBorder3;
+  TitledBorder titledBorder4;
+  TitledBorder titledBorder5;
+  TitledBorder titledBorder6;
+  TitledBorder titledBorder7;
+  TitledBorder titledBorder8;
+  TitledBorder titledBorder9;
+  TitledBorder titledBorder10;
+  TitledBorder titledBorder11;
+  TitledBorder titledBorder12;
+  TitledBorder titledBorder13;
+  TitledBorder titledBorder14;
+  TitledBorder titledBorder15;
+  TitledBorder titledBorder16;
+  TitledBorder titledBorder17;
+  Border border4;
+  CardLayout cardLayout8 = new CardLayout();
+  JTable vtSetTable = new JTable(engine.vtSetModel);
+  public JTable curveTable = new JTable(engine.curveModel);
+
+  //Construct the frame
+  public ReportFrame() {
+    enableEvents(AWTEvent.WINDOW_EVENT_MASK);
+    try {
+      jbInit();
+    }
+    catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  //Component initialization
+  private void jbInit() throws Exception  {
+    JTable genSetTable =  new JTable(engine.genSetModel);
+    JTable ctSetTable = new JTable(engine.ctSetModel);
+
+    JTable kneeTable = new JTable(engine.kneeModel);
+    JTable curentTable = new JTable(engine.currentModel);
+    JTable voltageTable = new JTable(engine.voltageModel);
+
+    image1 = new ImageIcon(ReportFrame.class.getResource("openFile.gif"));
+    image2 = new ImageIcon(ReportFrame.class.getResource("closeFile.gif"));
+    image3 = new ImageIcon(ReportFrame.class.getResource("help.gif"));
+    contentPane = (JPanel) this.getContentPane();
+    border1 = BorderFactory.createLineBorder(SystemColor.controlText,1);
+    titledBorder1 = new TitledBorder(BorderFactory.createEmptyBorder(),"General Settings");
+    titledBorder2 = new TitledBorder(BorderFactory.createEmptyBorder(),"CT Settings");
+    titledBorder3 = new TitledBorder(BorderFactory.createEmptyBorder(),"VT Settings");
+    color1 = heading.getBackground();
+    border2 = BorderFactory.createLineBorder(Color.white,2);
+    titledBorder4 = new TitledBorder(BorderFactory.createEmptyBorder(),"Three Phase Curve");
+    titledBorder5 = new TitledBorder(BorderFactory.createEmptyBorder(),"Magnetisation Curve Data");
+    titledBorder6 = new TitledBorder(BorderFactory.createEmptyBorder(),"Mag Curve Kneepoints");
+    titledBorder7 = new TitledBorder(BorderFactory.createEmptyBorder(),"Current Ratio Results");
+    titledBorder8 = new TitledBorder(BorderFactory.createEmptyBorder(),"Voltage Ratio Results");
+    titledBorder9 = new TitledBorder("");
+    titledBorder10 = new TitledBorder(BorderFactory.createLineBorder(new Color(153, 153, 153),2),"");
+    titledBorder11 = new TitledBorder(BorderFactory.createLineBorder(new Color(153, 153, 153),2),"");
+    titledBorder12 = new TitledBorder("");
+    titledBorder13 = new TitledBorder(BorderFactory.createLineBorder(new Color(153, 153, 153),2),"");
+    border3 = BorderFactory.createEmptyBorder();
+    titledBorder14 = new TitledBorder(BorderFactory.createLineBorder(new Color(153, 153, 153),2),"");
+    titledBorder15 = new TitledBorder(BorderFactory.createLineBorder(new Color(153, 153, 153),2),"");
+    titledBorder16 = new TitledBorder(BorderFactory.createLineBorder(new Color(153, 153, 153),2),"");
+    titledBorder17 = new TitledBorder(BorderFactory.createLineBorder(new Color(153, 153, 153),2),"");
+    border4 = BorderFactory.createLineBorder(Color.black,2);
+    contentPane.setLayout(borderLayout1);
+    this.setDefaultCloseOperation(3);
+    this.setSize(new Dimension(640, 480));
+    this.setTitle("CT Mag Curve Reporter");
+    statusBar.setMaximumSize(new Dimension(1000, 1000));
+    statusBar.setMinimumSize(new Dimension(0, 0));
+    statusBar.setPreferredSize(new Dimension(640, 18));
+    statusBar.setText("Report Frame Status Bar");
+    menuFile.setText("File");
+    menuFileExit.setText("Exit");
+    menuFileExit.addActionListener(new ActionListener()  {
+
+      public void actionPerformed(ActionEvent e) {
+        fileExit_actionPerformed(e);
+      }
+    });
+    menuHelp.setText("Help");
+    menuHelpAbout.setText("About");
+    menuHelpAbout.addActionListener(new ActionListener()  {
+
+      public void actionPerformed(ActionEvent e) {
+        helpAbout_actionPerformed(e);
+      }
+    });
+    openButton.setIcon(new ImageIcon(ReportFrame.class.getResource("openFile.gif")));
+    openButton.addActionListener(new java.awt.event.ActionListener() {
+
+      public void actionPerformed(ActionEvent e) {
+        openButton_actionPerformed(e);
+      }
+    });
+    openButton.setToolTipText("Open File");
+    saveButton.setIcon(new ImageIcon(ReportFrame.class.getResource("closeFile.gif")));
+                saveButton.addActionListener(new java.awt.event.ActionListener() {
+
+                        public void actionPerformed(ActionEvent e) {
+                                saveButton_actionPerformed(e);
+                        }
+                });
+    saveButton.setToolTipText("Close File");
+    jButton3.setIcon(new ImageIcon(ReportFrame.class.getResource("help.gif")));
+    jButton3.setToolTipText("Help");
+    Report.setLayout(gridBagLayout1);
+    header.setLayout(gridLayout2);
+    dateTime.setLayout(gridLayout1);
+    DateField.setBackground(Color.white);
+    DateField.setBorder(null);
+    DateField.setDisabledTextColor(Color.gray);
+    DateField.setEditable(false);
+    DateLabel.setBackground(Color.white);
+    DateLabel.setOpaque(true);
+    DateLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    DateLabel.setText("Test Date");
+    TimeLabel.setBackground(Color.white);
+    TimeLabel.setOpaque(true);
+    TimeLabel.setDisplayedMnemonic('0');
+    TimeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    TimeLabel.setText("Test Time");
+    TimeField.setBackground(Color.white);
+    TimeField.setBorder(null);
+    TimeField.setEditable(false);
+    gridLayout2.setColumns(1);
+    gridLayout2.setRows(2);
+    gridLayout1.setColumns(5);
+    header.setBackground(Color.white);
+    header.setBorder(titledBorder10);
+    header.setMinimumSize(new Dimension(640, 46));
+    header.setPreferredSize(new Dimension(1024, 46));
+    settings.setLayout(gridLayout3);
+    gridLayout3.setColumns(3);
+    genSetPanel.setBackground(Color.white);
+    genSetPanel.setBorder(titledBorder1);
+    genSetPanel.setMinimumSize(new Dimension(213, 110));
+    genSetPanel.setPreferredSize(new Dimension(341, 176));
+    genSetPanel.setLayout(cardLayout1);
+    ctSetPanel.setBackground(Color.white);
+    ctSetPanel.setAlignmentX((float) 0.0);
+    ctSetPanel.setAlignmentY((float) 0.0);
+    ctSetPanel.setBorder(titledBorder2);
+    ctSetPanel.setMinimumSize(new Dimension(213, 110));
+    ctSetPanel.setPreferredSize(new Dimension(341, 176));
+    ctSetPanel.setLayout(cardLayout2);
+    vtSetPanel.setBackground(Color.white);
+    vtSetPanel.setBorder(titledBorder3);
+    vtSetPanel.setMinimumSize(new Dimension(213, 100));
+    vtSetPanel.setPreferredSize(new Dimension(341, 176));
+    vtSetPanel.setLayout(cardLayout3);
+    Report.setBackground(Color.white);
+    Report.setName("");
+    Report.setMinimumSize(new Dimension(640, 480));
+    Report.setPreferredSize(new Dimension(1024, 768));
+    genSetTable.setCursor(null);
+    genSetTable.setFont(new java.awt.Font("Dialog", 0, 10));
+                genSetTable.setBorder(BorderFactory.createLineBorder(Color.black));
+    genSetTable.setMaximumSize(new Dimension(1000, 1000));
+    genSetTable.setMinimumSize(new Dimension(200, 100));
+    genSetTable.setPreferredSize(new Dimension(342, 176));
+    genSetTable.setRequestFocusEnabled(false);
+    genSetTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+    genSetTable.setIntercellSpacing(new Dimension(0, 0));
+    genSetTable.setRowHeight(11);
+    genSetTable.setRowSelectionAllowed(false);
+    contentPane.setMinimumSize(new Dimension(640, 480));
+    contentPane.setPreferredSize(new Dimension(640, 480));
+    settings.setBorder(BorderFactory.createLineBorder(Color.black));
+    settings.setMinimumSize(new Dimension(640, 110));
+    settings.setPreferredSize(new Dimension(1024, 176));
+    testerLabel.setBackground(Color.white);
+    testerLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    testerLabel.setText("Name:");
+    signature.setLayout(gridLayout4);
+    gridLayout4.setColumns(6);
+    signLabel.setBackground(Color.white);
+    signLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    signLabel.setText("Signature:");
+    signDateLabel.setBackground(Color.white);
+    signDateLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    signDateLabel.setText("Date:");
+    results.setLayout(gridLayout5);
+    gridLayout5.setColumns(3);
+    kneepoints.setBackground(Color.white);
+                kneepoints.setAlignmentX((float) 0.0);
+                kneepoints.setAlignmentY((float) 0.0);
+    kneepoints.setBorder(titledBorder6);
+    kneepoints.setMinimumSize(new Dimension(214, 55));
+    kneepoints.setPreferredSize(new Dimension(342, 88));
+    kneepoints.setLayout(cardLayout5);
+    currentRatio.setBackground(Color.white);
+                currentRatio.setFont(new java.awt.Font("Dialog", 0, 10));
+                currentRatio.setAlignmentX((float) 0.0);
+                currentRatio.setAlignmentY((float) 0.0);
+    currentRatio.setBorder(titledBorder7);
+    currentRatio.setMinimumSize(new Dimension(213, 55));
+    currentRatio.setPreferredSize(new Dimension(341, 88));
+    currentRatio.setLayout(cardLayout6);
+    voltageRatio.setBackground(Color.white);
+                voltageRatio.setFont(new java.awt.Font("Dialog", 0, 10));
+                voltageRatio.setAlignmentX((float) 0.0);
+                voltageRatio.setAlignmentY((float) 0.0);
+    voltageRatio.setBorder(titledBorder8);
+    voltageRatio.setMinimumSize(new Dimension(213, 55));
+    voltageRatio.setPreferredSize(new Dimension(341, 88));
+    voltageRatio.setLayout(cardLayout7);
+    heading.setLayout(gridBagLayout2);
+    title.setIconTextGap(10);
+    title.setBackground(Color.lightGray);
+    title.setFont(new java.awt.Font("Serif", 1, 15));
+    title.setForeground(Color.black);
+    title.setMaximumSize(new Dimension(1000, 40));
+    title.setPreferredSize(new Dimension(1000, 40));
+    title.setHorizontalAlignment(SwingConstants.CENTER);
+    title.setText("Current and Voltage Transformer Calibration Test");
+    jButton4.setBackground(Color.white);
+    jButton4.setFont(new java.awt.Font("Dialog", 3, 20));
+    jButton4.setBorder(null);
+    jButton4.setMinimumSize(new Dimension(139, 20));
+    jButton4.setMnemonic('0');
+    jButton4.setText("ProMet  ");
+    heading.setBackground(Color.white);
+    heading.setMinimumSize(new Dimension(640, 39));
+    heading.setPreferredSize(new Dimension(1024, 39));
+    data.setBackground(Color.gray);
+    data.setBorder(BorderFactory.createLineBorder(Color.black));
+    data.setMinimumSize(new Dimension(640, 176));
+    data.setLayout(gridBagLayout3);
+    results.setBackground(Color.white);
+                results.setFont(new java.awt.Font("Dialog", 0, 10));
+    results.setBorder(BorderFactory.createLineBorder(Color.black));
+    results.setMinimumSize(new Dimension(640, 55));
+    results.setPreferredSize(new Dimension(1024, 88));
+    signature.setBackground(Color.white);
+    signature.setBorder(titledBorder11);
+    signature.setMinimumSize(new Dimension(640, 24));
+    signature.setPreferredSize(new Dimension(1024, 24));
+    signField.setBackground(Color.white);
+    signField.setBorder(BorderFactory.createLineBorder(Color.black));
+    signField.setEditable(false);
+    curve.setBackground(Color.white);
+    curve.setBorder(titledBorder4);
+    curve.setMinimumSize(new Dimension(427, 176));
+    curve.setPreferredSize(new Dimension(683, 282));
+    curve.setLayout(cardLayout8);
+    kneedata.setBackground(Color.white);
+    kneedata.setBorder(titledBorder5);
+    kneedata.setMinimumSize(new Dimension(213, 176));
+    kneedata.setPreferredSize(new Dimension(341, 282));
+    kneedata.setLayout(cardLayout4);
+    dateTime.setBackground(Color.white);
+    dateTime.setMinimumSize(new Dimension(640, 22));
+    dateTime.setPreferredSize(new Dimension(1024, 22));
+    borderLayout1.setHgap(1);
+    borderLayout1.setVgap(1);
+    ctSetTable.setRowSelectionAllowed(false);
+    ctSetTable.setIntercellSpacing(new Dimension(0, 0));
+    ctSetTable.setRowHeight(9);
+    ctSetTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+    ctSetTable.setRequestFocusEnabled(false);
+    ctSetTable.setPreferredSize(new Dimension(200, 100));
+    ctSetTable.setMinimumSize(new Dimension(200, 100));
+    ctSetTable.setMaximumSize(new Dimension(1000, 1000));
+    ctSetTable.setCursor(null);
+    ctSetTable.setFont(new java.awt.Font("Dialog", 0, 9));
+                ctSetTable.setBorder(BorderFactory.createLineBorder(Color.black));
+    curveTable.setCursor(null);
+    curveTable.setFont(new java.awt.Font("Dialog", 0, 9));
+    curveTable.setBorder(BorderFactory.createLineBorder(Color.black));
+    curveTable.setMaximumSize(new Dimension(1000, 1000));
+    curveTable.setMinimumSize(new Dimension(200, 100));
+    curveTable.setPreferredSize(new Dimension(342, 176));
+    curveTable.setRequestFocusEnabled(false);
+    curveTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+    curveTable.setRowHeight(9);
+    kneeTable.setCursor(null);
+    kneeTable.setFont(new java.awt.Font("Dialog", 0, 9));
+                kneeTable.setAlignmentX((float) 0.0);
+                kneeTable.setAlignmentY((float) 0.0);
+    kneeTable.setMaximumSize(new Dimension(1000, 1000));
+    kneeTable.setMinimumSize(new Dimension(200, 100));
+    kneeTable.setPreferredSize(new Dimension(342, 176));
+    kneeTable.setRequestFocusEnabled(false);
+    kneeTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+    kneeTable.setIntercellSpacing(new Dimension(0, 0));
+    kneeTable.setRowHeight(9);
+    kneeTable.setRowSelectionAllowed(false);
+    curentTable.setRowSelectionAllowed(false);
+    curentTable.setRowHeight(9);
+    curentTable.setIntercellSpacing(new Dimension(0, 0));
+    curentTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+    curentTable.setRequestFocusEnabled(false);
+    curentTable.setPreferredSize(new Dimension(342, 176));
+    curentTable.setMinimumSize(new Dimension(200, 100));
+    curentTable.setMaximumSize(new Dimension(1000, 1000));
+    curentTable.setFont(new java.awt.Font("Dialog", 0, 9));
+    curentTable.setCursor(null);
+    voltageTable.setRowSelectionAllowed(false);
+    voltageTable.setRowHeight(9);
+    voltageTable.setIntercellSpacing(new Dimension(0, 0));
+    voltageTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+    voltageTable.setRequestFocusEnabled(false);
+                voltageTable.setToolTipText("");
+    voltageTable.setPreferredSize(new Dimension(342, 176));
+    voltageTable.setMinimumSize(new Dimension(200, 100));
+    voltageTable.setMaximumSize(new Dimension(1000, 1000));
+    voltageTable.setFont(new java.awt.Font("Dialog", 0, 9));
+    voltageTable.setCursor(null);
+    vtSetTable.setRowSelectionAllowed(false);
+                vtSetTable.setRowHeight(9);
+                vtSetTable.setRowMargin(0);
+                vtSetTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+                vtSetTable.setIntercellSpacing(new Dimension(0, 0));
+                vtSetTable.setRequestFocusEnabled(false);
+                vtSetTable.setPreferredSize(new Dimension(342, 176));
+                vtSetTable.setMinimumSize(new Dimension(200, 100));
+                vtSetTable.setMaximumSize(new Dimension(1000, 1000));
+                vtSetTable.setFont(new java.awt.Font("Dialog", 0, 9));
+                vtSetTable.setBorder(BorderFactory.createLineBorder(Color.black));
+                vtSetTable.setCursor(null);
+                menuFile.add(menuFileExit);
+    menuHelp.add(menuHelpAbout);
+    menuBar1.add(menuFile);
+    menuBar1.add(menuHelp);
+    this.setJMenuBar(menuBar1);
+    contentPane.add(statusBar, BorderLayout.SOUTH);
+    contentPane.add(Report, BorderLayout.CENTER);
+    Report.add(header, new GridBagConstraints(0, 0, 15, 1, 0.0, 0.0
+            ,GridBagConstraints.NORTHWEST, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+    header.add(heading, null);
+    heading.add(jButton4, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0
+            ,GridBagConstraints.WEST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+    heading.add(title, new GridBagConstraints(5, 0, 5, 1, 0.0, 0.0
+            ,GridBagConstraints.EAST, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+    header.add(dateTime, null);
+    dateTime.add(DateLabel, null);
+    dateTime.add(DateField, null);
+    dateTime.add(TimeLabel, null);
+    dateTime.add(TimeField, null);
+    Report.add(settings, new GridBagConstraints(0, 1, 15, 10, 0.0, 0.0
+            ,GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+    settings.add(genSetPanel, null);
+    genSetPanel.add(genSetTable, "genSetTable");
+    settings.add(ctSetPanel, null);
+    ctSetPanel.add(ctSetTable, "genSetTable1");
+    settings.add(vtSetPanel, null);
+                vtSetPanel.add(vtSetTable, "vtSetTable");
+    Report.add(data, new GridBagConstraints(0, 11, 15, 16, 0.0, 0.0
+            ,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+    data.add(curve, new GridBagConstraints(0, 0, 12, 1, 0.0, 0.0
+            ,GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+    data.add(kneedata, new GridBagConstraints(12, 0, 6, 1, 0.0, 0.0
+            ,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+    kneedata.add(curveTable, "curveTable");
+    Report.add(results, new GridBagConstraints(0, 27, 15, 5, 0.0, 0.0
+            ,GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+    results.add(kneepoints, null);
+    kneepoints.add(kneeTable, "kneeTable");
+    results.add(currentRatio, null);
+    currentRatio.add(curentTable, "curentTable");
+    results.add(voltageRatio, null);
+    voltageRatio.add(voltageTable, "voltageTable");
+    Report.add(signature, new GridBagConstraints(0, 32, 15, 3, 0.0, 0.0
+            ,GridBagConstraints.SOUTH, GridBagConstraints.VERTICAL, new Insets(0, 0, 0, 0), 0, 0));
+    signature.add(testerLabel, null);
+    signature.add(testerField, null);
+    signature.add(signLabel, null);
+    signature.add(signField, null);
+    signature.add(signDateLabel, null);
+    signature.add(signDateField, null);
+    contentPane.add(toolBar, BorderLayout.NORTH);
+    toolBar.add(openButton);
+    toolBar.add(saveButton);
+    toolBar.add(jButton3);
+  }
+
+  //File | Exit action performed
+  public void fileExit_actionPerformed(ActionEvent e) {
+    System.exit(0);
+  }
+
+  //Help | About action performed
+  public void helpAbout_actionPerformed(ActionEvent e) {
+    ReportFrame_AboutBox dlg = new ReportFrame_AboutBox(this);
+    Dimension dlgSize = dlg.getPreferredSize();
+    Dimension frmSize = getSize();
+    Point loc = getLocation();
+    dlg.setLocation((frmSize.width - dlgSize.width) / 2 + loc.x, (frmSize.height - dlgSize.height) / 2 + loc.y);
+    dlg.setModal(true);
+    dlg.show();
+  }
+
+  //Overridden so we can exit when window is closed
+  protected void processWindowEvent(WindowEvent e) {
+    super.processWindowEvent(e);
+    if (e.getID() == WindowEvent.WINDOW_CLOSING) {
+      fileExit_actionPerformed(null);
+    }
+  }
+
+
+	void openButton_actionPerformed(ActionEvent e) { engine.openTest(this);}
+	void saveButton_actionPerformed(ActionEvent e) { engine.saveTest(this);}
+
+}

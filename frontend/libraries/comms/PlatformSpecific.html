@@ -1,0 +1,75 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.05 [en] (X11; I; SunOS 5.6 sun4u) [Netscape]">
+</HEAD>
+<BODY>
+&nbsp;
+<CENTER>
+<H1>
+Java Communications API - Win32 Reference Implementation</H1></CENTER>
+
+<HR WIDTH="100%">
+<H2>
+Win32 Installation:</H2>
+
+Please read about the <A HREF="new.html">major API
+changes/updates</A> in this beta release.
+<P>
+&nbsp; 1) Copy win32com.dll to your &lt;JDK>\bin directory.
+<BR>&nbsp;&nbsp;&nbsp;&nbsp; eg. if c:\jdk1.1.5 is your JDK installation
+directory
+<BR>&nbsp;&nbsp;&nbsp;&nbsp; copy win32com.dll to c:\jdk1.1.5\bin
+<BR>&nbsp; 2) Copy comm.jar to your &lt;JDK>\bin directory.
+<BR>&nbsp;&nbsp;&nbsp;&nbsp; eg. if c:\jdk1.1.5 is your JDK installation
+directory
+<BR>&nbsp;&nbsp;&nbsp;&nbsp; copy comm.jar to c:\jdk1.1.5\bin
+<BR>&nbsp; 3) Copy javax.comm.properties to your &lt;JDK>\lib\ directory.
+<BR>&nbsp;&nbsp;&nbsp;&nbsp; eg. if c:\jdk1.1.5 is your JDK installation
+directory
+<BR>&nbsp;&nbsp;&nbsp;&nbsp; copy javax.comm.properties to c:\jdk1.1.5\lib
+
+<P>&nbsp;&nbsp;&nbsp;&nbsp; You can also keep javax.comm.properties in
+the same directory as
+<BR>&nbsp;&nbsp;&nbsp;&nbsp; comm.jar. The search order for javax.comm.properties
+is: 1. &lt;JDK>\lib,
+<BR>&nbsp;&nbsp;&nbsp;&nbsp; 2. the directory that contains the first valid
+comm.jar that is
+<BR>&nbsp;&nbsp;&nbsp;&nbsp; included in the classpath.
+
+<P>&nbsp; 4) Add comm.jar to your classpath.
+<BR>&nbsp;&nbsp;&nbsp;&nbsp; eg 1: If you dont have a classpath defined
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set CLASSPATH=c:\jdk1.1.5\bin\comm.jar
+<BR>&nbsp;&nbsp;&nbsp;&nbsp; eg 2:If you already have a class path, say
+c:\myclasses\java
+<BR>&nbsp;&nbsp;&nbsp;&nbsp; then
+<BR>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; set CLASSPATH=c:\myclasses\java;c:\jdk1.1.5\bin\comm.jar
+
+<P>&nbsp; 5) One serial port sample application BlackBox is provided with
+<BR>&nbsp;&nbsp;&nbsp;&nbsp; this release. To run BlackBox, first add BlackBox.jar
+to your
+<BR>&nbsp;&nbsp;&nbsp;&nbsp; classpath. Now you can run BlackBox:
+
+<P>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; java BlackBox
+
+<P>&nbsp; 6) One sample driver NullDriver is included in the samples/NullDriver
+<BR>&nbsp;&nbsp;&nbsp;&nbsp; directory. This is useful for folks attempting
+to write a new driver
+<BR>&nbsp;&nbsp;&nbsp;&nbsp; for their own hardware.
+<BR>
+<HR WIDTH="100%">
+
+<P>API Documentation:
+<BR>&nbsp; The javadocs directory contains the API documentation generated
+by javadoc(1)
+<BR>&nbsp; from comments in the Java source code.
+<BR>&nbsp; To view the HTML files, point your browser at the main documentation
+<BR>&nbsp; page, javadocs/packages.html.
+
+<P>Notes:
+
+<P>&nbsp; We have very limited support for parallel port in this release.
+<BR>
+<HR WIDTH="100%">
+</BODY>
+</HTML>

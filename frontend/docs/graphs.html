@@ -6,21 +6,29 @@
    <TITLE>GRAPHS:</TITLE>
 </HEAD>
 <BODY BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#800080">
-<B>GRAPHS:</B>
+<B>THE MAGNETISATION CURVES</B>
 
-<P><B>MAIN CURVE GRAPH</B>
-<BR>When the magnetisation curve test is completed, a magnetisation curve
-is drawn. This curve represents the relationship between the measured current
-and voltage readings for the <B>CT </B>(Current Transformers) under test,
-the magnetisation curve kneepoint is displayed in the results panel.
+<P><B>MAIN CURVE :</B>
 
-<P><B>THREE PHASE CURVE</B>
-<BR>Once a <B>Magnetisation Curve Test </B>have been completed it will
-be displayed in the maincurve graph (<B>CT Magnetisation Curve</B>). This
-curve can be assigned to one of three phases and when assigned the main
-curve graph is redrawn in the three-phase curve graph canvas (<B>3 Phase
-CT Magnetisation Curve)</B>, with the drawn curve set to the colour of
-the selected phase.
+<P>Depending on the OptionsDialog settings a magnetisation curve is drawn
+either real time while the magnetisation curve test is being conducted
+or only once when the test is completed. An OptionsDialog setting also
+allow for the up-curve to be drawn i.e. the characteristic curve for the
+CT while the injected current is being increased, the core is being magnetised.
+In correlation with the industry standard the kneepoint is calculated on
+the down curve i.e. when the injected current is being decreased, the CT
+core is being de-magnetised. Once the test is completed, the down curve
+would be resized and drawn in black. If the "Draw Upsweep" was selected
+the up curve would be drawn in green. The calculated magnetisation curve
+kneepoint is displayed in the results panel.
+
+<P><B>THREE PHASE CURVE:</B>
+
+<P>Once a <B>Magnetisation Curve Test </B>have been completed it will be
+displayed in the maincurve graph (<B>CT Magnetisation Curve</B>). This
+curve (down curve) can be assigned to one of three phases and when assigned
+it is redrawn in the three-phase curve graph canvas (<B>3 Phase CT Magnetisation
+Curve)</B>, with the drawn curve set to the colour of the selected phase.
 <DIR>
 <DIR>&nbsp;</DIR>
 </DIR>
