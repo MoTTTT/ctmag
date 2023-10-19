@@ -1,0 +1,83 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Author" CONTENT="M.J.Colley">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.04 [en] (Win95; I) [Netscape]">
+   <TITLE>magcurve</TITLE>
+</HEAD>
+<BODY TEXT="#000000" BGCOLOR="#FFFFFF" LINK="#0000EE" VLINK="#551A8B" ALINK="#FF0000">
+<B>MAGCURVE TEST PROCEDURE:</B>
+<BR>&nbsp;
+<UL>
+<LI>
+The hardware must be set up as stipulated for the current transformer magnetising
+test. Turn the variac control knob to 0V. Ensure that the CT to be tested
+is demagnetised. Apply power to the variac. Select the "Start Magcurve
+Test" option on the application screen. In the statustextfield just below
+the menu-bar at the top of the screen, the voltage and current readings
+for the respective channels as measured by the Promet sensing unit will
+be displayed.</LI>
+
+<LI>
+Increase the variac voltage at a constant tempo of 10V/sec (make use of
+the voltage dial on which the variac control knob is mounted as a reference
+in order to maintain a constant turning rate). When a kneepoint is detected
+on the up sweep of the variac, the application notifies the user by sounding
+a beep.</LI>
+
+<LI>
+Stop turning the variac control knob i.e. stop increasing the applied voltage
+to the CT being tested.</LI>
+
+<LI>
+Wait 5 seconds for the CT to settle before proceeding with the down sweep
+i.e. turning the variac control knob down to 0V.</LI>
+
+<LI>
+Start the down sweep very slowly and increase the speed to a maximum of
+10V/sec. Try to maintain a constant sweep at this rate, do not exceed this
+maximum speed.</LI>
+
+<LI>
+A second beep will indicate that the end of test has been reached. The
+magnetisation curve for the CT under test would be drawn on the "CT Magnetisation
+Curve" panel. The measured kneepoint for this curve will be indicated as
+a voltage and current reading in the "MagCurve Results" panel assigned
+to the "main kneepoint".</LI>
+
+<LI>
+This "maincurve" can now be assigned to one of the three phases by selecting
+"RED", "WHITE"&nbsp; or "BLUE". To ignore this curve i.e. not assign it
+to one of the phases, select the "STOP TEST" button. By assigning the maincurve&nbsp;
+to one of the phases, the curve is redrawn for the selected phase in the
+"3 Phase CT Magnetisation Curve" panel and its calculated kneepoint assigned
+to the appropriate phase in the "Mag Curve Results" panel.</LI>
+</UL>
+<B>CURVE CHARACTERISTICS:</B>
+
+<P>The magnetisation effect in a CT has a settling time. The magnetising
+curves in the application are drawn on the down sweep of the variac since
+the measured results for a CT are inherently more stable on the down sweep.
+In tests conducted stable, accurate results were achieved when the up sweep
+was maintained at a constant rate of 10V/sec, followed by a waiting period
+of 5 seconds to allow the CT magnetisation effect to settle before proceeding
+with the down sweep. The down sweep is slowly increased to a maximum turning
+rate of 10V/sec.
+
+<P>Since settling time will differ from CT to CT, it is advisable to conduct
+a series of tests on a reference CT in order to achieve the correct, maximum
+continious sweep speed. The results for the tests conducted on the same
+CT should be identical. If the curves for the same CT do not match it is
+indicative of inconsistant and incorrect sweep speeds. Sweeps which are
+too fast would tend to flatten the drawn curve. If the angle of the magnetisation
+curve differ for the tests conducted on the same CT it is a clear indication
+of inconsistent sweep speeds between the different tests conducted. If
+there is a difference in the highest voltage measured it would indicate
+that the up sweeps were inconsistent, the up sweeps were too fast and/or
+not enough settling time were allowed. Differences in the maximum current
+measured indicate that the variac was not consistantly stopped at the sounding
+of the first beep which could be indicative of too fast sweep speeds. Slower
+sweep speeds are advised if results remain inconsistent.
+<BR>&nbsp;
+</BODY>
+</HTML>

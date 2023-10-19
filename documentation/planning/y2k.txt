@@ -1,0 +1,78 @@
+Project:   	Y2K
+Project Leader:	Wynand
+Start:		1999/01/12
+Target End Date:1999/06/30
+Methodology:	Impact Analysis
+		    Identify resources and systems
+		    Categorise by impact of non-compliance
+		    Target high impact items with plan
+		Vendor Statements
+		    Targeted items
+		Product Testing (Client Endorsed)
+		    Date Manipulation
+		    Save Results and document
+		Contingency Planning
+		    Reduce Dependance    
+		Risk Aversion
+		    Backup Planning    
+
+	SYSTEM			IMPACT			PLAN
+	------			------			----
+
+Operational Systems
+
+    File and print server	High (Immediate)	Check
+	Hardware		No services
+	    DUEY
+	Software
+	    Linux
+	    Samba					Check vendor compliance
+	    lpd
+	    
+    Internet			Medium
+	Software
+	    IMAPD
+	    fetchmail
+	    netscape
+	    ppp, NAT, etc
+	    apache
+	    
+
+    Software Development	High (Down time)	Test
+	Hardware
+	    ceth
+	Software
+	    Win 98					Check vendor compliance
+	    Symantec VC					Check vendor compliance
+
+    Accounting			Low (2 Monthly runs)	Move to App Server
+	Hardware
+	    alf
+	Software
+	    Pastel SOHO					Check vendor compliance
+
+Products
+
+    CT Mag
+	Hardware
+	    any PC			???		Check for continued
+							operation on compliant
+							and non-compliant
+							platforms
+	    Tester Back End		NO RTC
+	Software
+	    Java RTE			Counters OK at Y2K
+	    Front End			Report adjusted for format compliance
+	    Microcontroller Code	NO RTC
+    
+    BHC
+    
+    PC's
+	RTC, BIOS
+	OS
+	    Winxx
+	    Linux
+    
+    uNode	RTC OK till 2100
+    
+    

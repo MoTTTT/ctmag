@@ -1,0 +1,658 @@
+1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Technical Manual 
+For The  
+PROMET 
+Calibration Unit.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+TABLE OF CONTENTS
+                                                                                                                              
+
+                                           CONTENTS:
+
+                                       Table Of  Contents .........................................1
+Pre-face ......................................................... 2
+Pre-face cont ................................................. 3
+Pre-face cont ................................................. 4
+Brief Over view ............................................. 5
+
+Basic Testing Procedures.
+
+Testing Procudures ........................................ 6
+CT Magnetising Curve Test ............................ 6
+CT Magnetising Curve Test cont. .................... 7
+CT Polarity & Ratio Test ............................... 7
+VT Polarity & Ratio Test ............................... 8
+
+Technical Data 
+Power Supply .................................................9
+			     Protection Ratings RS232 .................................... 10		
+
+
+PRE_FACE
+                                                                                                                              
+Restricted Rights:
+Copyright:
+The copyrighted software and hardware that accompanies this manual is licensed to the End User only for use in strict accordance with the End user Licence Agreement, which should be read carefully before commencing use of the software.
+
+All Rights Reserved.  No part of this work covered by copyright hereon may be reused or reproduced in any form or by any means - graphic, electronic, or mechanical - including photocopying, recording, taping, or storage in an information retrieval system, without prior written permission of the copyright owner.
+
+PROMET.CC,   reserve the right to make changes, without notice, in the products, including circuits, standard cells, and/or software, described or contained herein in order to improve design and/or performance.  PROMET.CC, assumes no responsibility or liability for the use of any of these products, conveys no license or title under any patent, copyright, or mask work right to these products, and makes no representations or warranties that these products are free from patent, copyright, or mask work right infringement, unless otherwise specified.  
+All design, artwork and printed circuit boards remain the property of PROMET.CC,  and is not to be reproduced in any form or by any means - graphic, electronic, or mechanical - including photocopying, recording, taping, or storage in an information retrieval system, without prior written permission of the Copyright owner.
+
+SCO ODT UNIX:
+
+No part of this publication or software may be reproduced , transmitted, stored in a retrieval system, nor translated into any human or computer language, in any form or means , electronic, mechanical, magnetic, optical without prior written permission from the owners.
+Open Desktop, the Open Desktop Logo, SCO the SCO logo, and The Santa Cruz Operation are registered trade marks of The Santa Cruz Operation , Inc. in the U.S.A and other countries. Open Server is a trade mark of The Santa Cruz Operation, Inc.
+UNIX and OPEN LOOK are registered trade marks of UNIX Systems Laboratories, Inc. in the U.S.A and other countries.
+NFS  is a registered trade marks of  Sun Microsystems, Inc.
+OSF  is a registered trade marks of  The Open Software Foundation, Inc.
+Xsight is a registered trade marks of  Locus Computing  Corporation.
+
+Microsoft, Windows Logo , Windows 95 and Windows NT are registered trademarks of Microsoft Corporation.
+
+Java and all Java based trademarks and logos are trademarks or registered trademarks oof Sun Microsystems in the U.S.A and all other countries. 
+
+PROMET.CC is a registered Computing Corporation. All Data bases, Graphical Interfaces, Software , Communication Protocols and All Electrical Designs and Drawings are registered trade marks of  PROMET.CC. 
+
+KANTRONICS  are registered trade marks of KANTRONICS, Inc. All radio Tnc and software  are registered trade marks of KANTRONICS, Inc.
+
+Lotus Smartsuite are registered trade marks of Lotus, Inc.
+
+Chase IO PRO and related software is a registered trade marks of  CHASE, Inc.
+Winsor is registered trade marks of CHUBB 
+
+All design, artwork and printed circuit boards remain the property of PROMET.CC and is not to be reproduced in any form or by any means - graphic, electronic, or mechanical - including photocopying, recording, taping, or storage in an information retrieval system, without prior written permission of the Copyright owner.
+
+All Electrical schematics , circuit diagrams and Control panel / board design remain the property of PROMET.CC and is not to be reproduced in any form or by any means - graphic, electronic, or mechanical - including photocopying, recording, taping, or storage in an information retrieval system, without prior written permission of the Copyright owner.
+
+Product names mentioned which are not the property of any of the above, are / may be trademarks or registered trademarks of their respective companies.  
+
+PATENT, TRADE SECRET AND COPYRIGHT INDEMNIFICATION.
+
+ALL code/source  is the property of .PROMET.CC  Copying or distribution or reuse  of any portion of the code (source and/or executable code) without the written permission of PROMET.CC is an infringement of the copyright act.
+
+PROMET.CC protocol is the SOLE property of PROMET.CC and its owners.  This protocol shall not be used in a modified or unauthorised form by anybody without the written permission of PROMET.CC.  PROMET.CC reserve the right to modify and/or change this protocol without any notification should it deemed necessary.  Should any equipment fail to work after any protocol changes,  PROMET.CC assumes no responsibility or liability and any additional cost will not be payable by PROMET.CC. Changes is a privilege of PROMET.CC in which case PROMET.CC is not responsible for rectification of this problem.
+
+The PROMET.CC protocol never becomes the property of any other user and/or licensee and/or contractor and/or subcontractor.  IT IS THE SOLE PROPERTY OF PROMET.CC.  The user should require in writing the right to use or modify the protocol from PROMET.CC for any existing and/or any new project.  
+
+When PROMET.CC subcontracts, the protocol is not the  co-property and/or the right of use of the main contractor.  Disclosure and/or use of this protocol  is an infringement of the copyright act. The PROMET.CC protocol never becomes the property of any other  user and remains the property of the original developers.  Should this  happen at any stage, or in PROMET.CC opinion, be likely to become the subject of a claim or infringement of patent, trade secret or copyright, PROMET.CC may (1) procure for licensee, at no cost to Licensee, the right to continue to use the software, or (2) replace or modify the Software at no cost to Licensee, to make such non infringing, provided the same function is performed by the replacement or modified Software, or if (1) or (2) are not commercially responsible, terminate the license to use such Software.  Where a specific fee was  paid by the licensee, this payment will be forfeited by the licensee.
+
+General.
+
+You agree to hold in confidence, and not to copy, the Software and/or the designs and/or artwork and/or the  printed circuit boards and/or the Documentation which PROMET.CC represents as confidential to and a trade secret of PROMET.CC and its licensers, provided, however, that you shall be able to maintain archival copies of the Software during the term of this License.  This Agreement represents the complete and exclusive statement of the agreements concerning this license between the parties and supersedes all prior agreements and representations between them relating to the subject matter hereof.  It may be amended only by a writing executed by both parties.  The license fee does not include sales, use, value-added or other taxes or duties whatsoever which are your responsibility to pay.  The acceptance of any purchase order placed by you for the Software and/or Documentation is expressly made conditional on your assent to the terms and conditions set forth herein, and Licenser agrees to furnish the software and Documentation only upon these terms and conditions and not those contained your purchase order.  
+
+ If any provision of this agreement is held to be ineffective, unenforceable, or illegal under certain circumstances and such provision shall be reformed to and only the extent necessary to make it effective, enforceable, and legal under such circumstances.  All headings are solely for convenience and shall not be considered in interpreting this Agreement.  This Agreement shall be governed by and construed in accordance with the laws of South Africa. 
+
+
+
+Disclaimer:
+
+PROMET.CC, nor anyone else who has been involved in the creation of this production or delivery of the system or this manual makes any warranties with respect to the contents of the software, hardware or this manual and each specifically declaims any implied warranties of merchantability or fitness for any purpose. All the above reserves the right to make changes, without notice, in the products, including circuits, standard cells, and/or software, described or contained herein in order to improve design and/or perform without obligation to notify any person. All the above reserve the right and assumes no responsibility or liability for the use of any of these products, conveys no license or title under any patent, copyright, or mask work right to these products, and makes no representations or warranties that these products are free from patent, copyright, or mask work right infringement, unless otherwise specified.  
+
+IMPORTANT NOTE!!
+
+PROMET.CC can not be held liable for any risk to human life dure to improper use of this device. All test must be carried out on apparatus that are at a zero potential and is disconnected or isolated from any live power systems. Rotating plant shall not be regarded as dead until it is stationary or is being slowly rotated by means of barring gear and is not excited. 
+
+The design of  this manual is to be a imformative, repair/maintenance manual and should not be used to redesign or apply reverse engineering on any of the products.
+
+
+
+
+
+                    BRIEF OVERVIEW                                                                                                                                           
+PROMET CALIBRATION UNIT:
+
+Capabilities:
+
+This unit was developed for the Metering and Protection Industry to test Voltage Transformers, Current Transformers and to deterimine if these devices are within specification.
+
+The unit test the following when connected to a personel computer,
+1: Magnetizing test of Current Transformers.
+2: Ratio test of  Current Transformers.
+3: Polarity test of Current Transformers.
+4: Ratio test of  Voltage Transformers.
+5: Polarity test of Voltage Transformers.
+
+Please note that the above tests must be carried out on apparatus that are at a zero potential and is disconnected or isolated from any live power systems. Rotating plant shall not be regarded as dead until it is stationary or is being slowly rotated by means of barring a gear and is not excited.
+
+The software that comes with the PROMET will plot the magnetizing curves, show the ratio of the current transformer and voltage transformer and it will do a polarity tests of both the voltage and current transformers. All the information is held in a file which can be overlaid  onto previous test to be able to compare results. The information is also available in a text file format that can be imported into a spread sheet such as  Lotus 123 or a word processing package such as  Wordpro. 
+
+Unit calibration date and time will be represented in the software, and all further calibrations will be stored in the software of the unit. This will be shown on all graphs and store data. All calibrations will be done by a NLA lab with the relavant software and hardware ajustments. 
+
+
+					Testing Procedures:
+
+
+
+	
+
+
+
+
+
+
+						Fig 1
+	            Figure 1 The front face plate of the PROMET current and voltage tester.
+
+Current Transformer Magnetizing Test.
+
+The following equipment will be needed.
+1 Personal Computer, eg. Notebook.
+1 Voltage injection set.
+1 PROMET CT & VT Tester.
+Various test leads.
+
+				Fig 2
+
+			Figure 2: Connection configuration for the magnetization test.
+			
+Procedure:
+Connect the PROMET mains cable to the 220 volt supply, connect the RS232 cable to the PROMET and the serial port on the Notebook. Start the software.
+
+Connect the various leads as indicated in Fig 2. When all connection have been made and the relevant CT information has been filled in, the magnetizing curve test can be started.  
+
+
+Turn the variac control knob slowly in steps of + 10 volt. The PROMET will pass the information to the Notebook. Once the knee point has been reached the Notebook will notify the user. The knee point is reached when a 10% rise in voltage results in a 50 % rise in current on the CT circuit. Once the knee point has been reached and the CT saturated, reduce the voltage slowly.
+
+The magnetizing curves will now be plotted on the Noteboks screen. This information can be stored for futher reference or can be printed.  
+
+Current Transformer Ratio & Polarity Test. 
+
+The following equipment will be needed.
+1 Personal Computer, eg. Notebook.
+1 Current injection set .
+1 PROMET CT & VT Tester.
+Various test leads.
+
+							Fig 3
+		Figure 3: Connection configuration for the current transformer and ratio test
+	   
+	   Procedure:
+Connect the PROMET mains cable to the 220 volt supply, connect the RS232 cable to the PROMET and the serial port on the Notebook. Start the software.
+
+Connect the various leads as indicated in Fig 3. When all connection have been made and the relevant CT information has been filled in, the Polarity & Ratio test can be started.  
+
+NOTE: That the leads must be connected  in the correct order, to ensure the correct information with regards to the polarity and ratio test.
+
+Turn the variac control knob slowly untill 20 % of the rated current is reached. The PROMET will pass the information to the Notebook. Once 20 % has been reached the Notebook will notify the user. 
+
+The CT ratio formula is as follows:		Primary Test Current
+						CT =    Secondary Test Current
+
+The Ratio & polarity information will now be shown on the Notebooks screen. This information can be stored for futher reference or can be printed.
+
+
+Voltage Transformer Ratio & Polarity Test. 
+
+The follwoing equipment will be needed.
+1 Personal Computer, eg. Notebook.
+1 Voltage injection set .
+1 PROMET CT & VT Tester.
+Various test leads.
+												   						   Fig 4
+		Figure 4: Connection configuration for the voltage transformer and ratio test
+Procedure:
+Connect the PROMET mains cable to the 220 volt supply, connect the RS232 cable to the PROMET and the serial port on the Notebook. Start the software.
+
+Connect the various leads as indicated in Fig 4. When all connection have been made and the relevant VT information has been filled in, the Polarity & Ratio test can be started.  
+
+NOTE: That the leads must be connected up in the correct order, to ensure the correct information with regards to the polarity and ratio test.
+
+Turn the variac control knob slowly untill 220 V is reached. The PROMET will pass the information to the Notebook. 
+
+The VT ratio formula is as follows:		Primary Test Voltage										CT =    Secondary Test Voltage
+
+The Ratio & polarity information will now be shown on the Notebooks screen. This information can be stored for futher reference or can be printed.
+
+
+
+    	                            Technical Data:
+POWER SUPPLY	
+Mains Connection			220 V AC
+Current Consumption			20 mA
+Weight		
+Size					260 x 125 x 64 mm
+Case Material				0.9mm coated  steel with a mid-grey epoxy powder finish
+Type Of Protection			IP 55
+Ambient Temperature In Degree's Centigrade   	-10 ........ 80 /*C
+		
+CPU 		
+CPU Make				80C552
+Memory                  ( ROM )		64 K
+Frequency Response			2 kHz min
+Common Mode Rejection Ratio		
+                            ( 40 ..... 60Hz ) 		70db min
+Basic Error  ( at 20*C )		
+                            % of full scale		0.1 %
+Temperature Coefficient		
+                             % of full scale		0.005 / *C
+Non-linearity  % of full scale		0.025 %
+Settling Time, step input/output		
+                             100% to 0.1%		1 us max.
+CPU Clock Frequency			11.0592 kHz
+Real Time Clock				PC's clock for time and date stamping.   
+Operating Limits				-10*C to 80 *C, and 0 to 90% relative humidity 
+
+INPUTS		
+Number Of Voltage Inputs.		2  
+Max. input Voltage.			0 .......500 V 
+Number Of Current  Inputs.		2  
+Max. input Current on  P1	.		0 .......100 A
+Max. input Current on  P2	.		0 .......6 
+Input Resistance for Voltage.		
+Input Impedance	for Voltage.	
+Input Resistance for Current.		
+Input Impedance	for Current.
+Common Mode Rejection Ratio		
+                            ( 40 ..... 60Hz ) 		70 db min
+Basic Error  ( at 20*C  )		
+                            % of full scale		0.025 %
+Temperature Coefficient		
+                             % of full scale		0.005 / *C
+Non-linearity  % of full scale		0.025 %
+
+
+
+
+COMMUNICATIONS		
+Communication Ports			1 x DB 9 pin plugs
+Type Of Communication			RS 232
+Communication Baud Rate		Auto detection.
+Max Communication  Distance		for RS 232  max distance 10 meters
+Communication Protocol			Modbus RTU.
+
+Protection Ratings RS232 		
+Max Perm. Operating Voltage		15 V DC
+Leakage Current Il with V max		< = 10 ua
+Nominal surge current isn (8/20)		5 kA
+Output Voltage Threshold At 
+1 KV/us        normal/common gnd		< = 27 V / >= 27 V
+                     common PE			< = 800 V
+Response Time ts normal/common gnd	< = 1ns
+                     common PE			< = 100 ns
+Cutoff Frequency fg (3db)                    
+         normal in 50 ohm/600ohm		> 3 MHz/ > 300 MHz
+         common in 50 ohm/600ohm		> 3 MHz/ > 300 MHz
+Connection Type				D type 9 pin
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Technical Manual 
+For The  
+PROMET 
+Calibration Unit.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+TABLE OF CONTENTS
+                                                                                                                              
+
+                                           CONTENTS:
+
+                                       Table Of  Contents .........................................1
+Pre-face ......................................................... 2
+Pre-face cont ................................................. 3
+Pre-face cont ................................................. 4
+Brief Over view ............................................. 5
+
+Basic Testing Procedures.
+
+Testing Procudures ........................................ 6
+CT Magnetising Curve Test ............................ 6
+CT Magnetising Curve Test cont. .................... 7
+CT Polarity & Ratio Test ............................... 7
+VT Polarity & Ratio Test ............................... 8
+
+Technical Data 
+Power Supply .................................................9
+			     Protection Ratings RS232 .................................... 10		
+
+
+PRE_FACE
+                                                                                                                              
+Restricted Rights:
+Copyright:
+The copyrighted software and hardware that accompanies this manual is licensed to the End User only for use in strict accordance with the End user Licence Agreement, which should be read carefully before commencing use of the software.
+
+All Rights Reserved.  No part of this work covered by copyright hereon may be reused or reproduced in any form or by any means - graphic, electronic, or mechanical - including photocopying, recording, taping, or storage in an information retrieval system, without prior written permission of the copyright owner.
+
+PROMET.CC,   reserve the right to make changes, without notice, in the products, including circuits, standard cells, and/or software, described or contained herein in order to improve design and/or performance.  PROMET.CC, assumes no responsibility or liability for the use of any of these products, conveys no license or title under any patent, copyright, or mask work right to these products, and makes no representations or warranties that these products are free from patent, copyright, or mask work right infringement, unless otherwise specified.  
+All design, artwork and printed circuit boards remain the property of PROMET.CC,  and is not to be reproduced in any form or by any means - graphic, electronic, or mechanical - including photocopying, recording, taping, or storage in an information retrieval system, without prior written permission of the Copyright owner.
+
+SCO ODT UNIX:
+
+No part of this publication or software may be reproduced , transmitted, stored in a retrieval system, nor translated into any human or computer language, in any form or means , electronic, mechanical, magnetic, optical without prior written permission from the owners.
+Open Desktop, the Open Desktop Logo, SCO the SCO logo, and The Santa Cruz Operation are registered trade marks of The Santa Cruz Operation , Inc. in the U.S.A and other countries. Open Server is a trade mark of The Santa Cruz Operation, Inc.
+UNIX and OPEN LOOK are registered trade marks of UNIX Systems Laboratories, Inc. in the U.S.A and other countries.
+NFS  is a registered trade marks of  Sun Microsystems, Inc.
+OSF  is a registered trade marks of  The Open Software Foundation, Inc.
+Xsight is a registered trade marks of  Locus Computing  Corporation.
+
+Microsoft, Windows Logo , Windows 95 and Windows NT are registered trademarks of Microsoft Corporation.
+
+Java and all Java based trademarks and logos are trademarks or registered trademarks oof Sun Microsystems in the U.S.A and all other countries. 
+
+PROMET.CC is a registered Computing Corporation. All Data bases, Graphical Interfaces, Software , Communication Protocols and All Electrical Designs and Drawings are registered trade marks of  PROMET.CC. 
+
+KANTRONICS  are registered trade marks of KANTRONICS, Inc. All radio Tnc and software  are registered trade marks of KANTRONICS, Inc.
+
+Lotus Smartsuite are registered trade marks of Lotus, Inc.
+
+Chase IO PRO and related software is a registered trade marks of  CHASE, Inc.
+Winsor is registered trade marks of CHUBB 
+
+All design, artwork and printed circuit boards remain the property of PROMET.CC and is not to be reproduced in any form or by any means - graphic, electronic, or mechanical - including photocopying, recording, taping, or storage in an information retrieval system, without prior written permission of the Copyright owner.
+
+All Electrical schematics , circuit diagrams and Control panel / board design remain the property of PROMET.CC and is not to be reproduced in any form or by any means - graphic, electronic, or mechanical - including photocopying, recording, taping, or storage in an information retrieval system, without prior written permission of the Copyright owner.
+
+Product names mentioned which are not the property of any of the above, are / may be trademarks or registered trademarks of their respective companies.  
+
+PATENT, TRADE SECRET AND COPYRIGHT INDEMNIFICATION.
+
+ALL code/source  is the property of .PROMET.CC  Copying or distribution or reuse  of any portion of the code (source and/or executable code) without the written permission of PROMET.CC is an infringement of the copyright act.
+
+PROMET.CC protocol is the SOLE property of PROMET.CC and its owners.  This protocol shall not be used in a modified or unauthorised form by anybody without the written permission of PROMET.CC.  PROMET.CC reserve the right to modify and/or change this protocol without any notification should it deemed necessary.  Should any equipment fail to work after any protocol changes,  PROMET.CC assumes no responsibility or liability and any additional cost will not be payable by PROMET.CC. Changes is a privilege of PROMET.CC in which case PROMET.CC is not responsible for rectification of this problem.
+
+The PROMET.CC protocol never becomes the property of any other user and/or licensee and/or contractor and/or subcontractor.  IT IS THE SOLE PROPERTY OF PROMET.CC.  The user should require in writing the right to use or modify the protocol from PROMET.CC for any existing and/or any new project.  
+
+When PROMET.CC subcontracts, the protocol is not the  co-property and/or the right of use of the main contractor.  Disclosure and/or use of this protocol  is an infringement of the copyright act. The PROMET.CC protocol never becomes the property of any other  user and remains the property of the original developers.  Should this  happen at any stage, or in PROMET.CC opinion, be likely to become the subject of a claim or infringement of patent, trade secret or copyright, PROMET.CC may (1) procure for licensee, at no cost to Licensee, the right to continue to use the software, or (2) replace or modify the Software at no cost to Licensee, to make such non infringing, provided the same function is performed by the replacement or modified Software, or if (1) or (2) are not commercially responsible, terminate the license to use such Software.  Where a specific fee was  paid by the licensee, this payment will be forfeited by the licensee.
+
+General.
+
+You agree to hold in confidence, and not to copy, the Software and/or the designs and/or artwork and/or the  printed circuit boards and/or the Documentation which PROMET.CC represents as confidential to and a trade secret of PROMET.CC and its licensers, provided, however, that you shall be able to maintain archival copies of the Software during the term of this License.  This Agreement represents the complete and exclusive statement of the agreements concerning this license between the parties and supersedes all prior agreements and representations between them relating to the subject matter hereof.  It may be amended only by a writing executed by both parties.  The license fee does not include sales, use, value-added or other taxes or duties whatsoever which are your responsibility to pay.  The acceptance of any purchase order placed by you for the Software and/or Documentation is expressly made conditional on your assent to the terms and conditions set forth herein, and Licenser agrees to furnish the software and Documentation only upon these terms and conditions and not those contained your purchase order.  
+
+ If any provision of this agreement is held to be ineffective, unenforceable, or illegal under certain circumstances and such provision shall be reformed to and only the extent necessary to make it effective, enforceable, and legal under such circumstances.  All headings are solely for convenience and shall not be considered in interpreting this Agreement.  This Agreement shall be governed by and construed in accordance with the laws of South Africa. 
+
+
+
+Disclaimer:
+
+PROMET.CC, nor anyone else who has been involved in the creation of this production or delivery of the system or this manual makes any warranties with respect to the contents of the software, hardware or this manual and each specifically declaims any implied warranties of merchantability or fitness for any purpose. All the above reserves the right to make changes, without notice, in the products, including circuits, standard cells, and/or software, described or contained herein in order to improve design and/or perform without obligation to notify any person. All the above reserve the right and assumes no responsibility or liability for the use of any of these products, conveys no license or title under any patent, copyright, or mask work right to these products, and makes no representations or warranties that these products are free from patent, copyright, or mask work right infringement, unless otherwise specified.  
+
+IMPORTANT NOTE!!
+
+PROMET.CC can not be held liable for any risk to human life dure to improper use of this device. All test must be carried out on apparatus that are at a zero potential and is disconnected or isolated from any live power systems. Rotating plant shall not be regarded as dead until it is stationary or is being slowly rotated by means of barring gear and is not excited. 
+
+The design of  this manual is to be a imformative, repair/maintenance manual and should not be used to redesign or apply reverse engineering on any of the products.
+
+
+
+
+
+                    BRIEF OVERVIEW                                                                                                                                           
+PROMET CALIBRATION UNIT:
+
+Capabilities:
+
+This unit was developed for the Metering and Protection Industry to test Voltage Transformers, Current Transformers and to deterimine if these devices are within specification.
+
+The unit test the following when connected to a personel computer,
+1: Magnetizing test of Current Transformers.
+2: Ratio test of  Current Transformers.
+3: Polarity test of Current Transformers.
+4: Ratio test of  Voltage Transformers.
+5: Polarity test of Voltage Transformers.
+
+Please note that the above tests must be carried out on apparatus that are at a zero potential and is disconnected or isolated from any live power systems. Rotating plant shall not be regarded as dead until it is stationary or is being slowly rotated by means of barring a gear and is not excited.
+
+The software that comes with the PROMET will plot the magnetizing curves, show the ratio of the current transformer and voltage transformer and it will do a polarity tests of both the voltage and current transformers. All the information is held in a file which can be overlaid  onto previous test to be able to compare results. The information is also available in a text file format that can be imported into a spread sheet such as  Lotus 123 or a word processing package such as  Wordpro. 
+
+Unit calibration date and time will be represented in the software, and all further calibrations will be stored in the software of the unit. This will be shown on all graphs and store data. All calibrations will be done by a NLA lab with the relavant software and hardware ajustments. 
+
+
+					Testing Procedures:
+
+
+
+	
+
+
+
+
+
+
+						Fig 1
+	            Figure 1 The front face plate of the PROMET current and voltage tester.
+
+Current Transformer Magnetizing Test.
+
+The following equipment will be needed.
+1 Personal Computer, eg. Notebook.
+1 Voltage injection set.
+1 PROMET CT & VT Tester.
+Various test leads.
+
+				Fig 2
+
+			Figure 2: Connection configuration for the magnetization test.
+			
+Procedure:
+Connect the PROMET mains cable to the 220 volt supply, connect the RS232 cable to the PROMET and the serial port on the Notebook. Start the software.
+
+Connect the various leads as indicated in Fig 2. When all connection have been made and the relevant CT information has been filled in, the magnetizing curve test can be started.  
+
+
+Turn the variac control knob slowly in steps of + 10 volt. The PROMET will pass the information to the Notebook. Once the knee point has been reached the Notebook will notify the user. The knee point is reached when a 10% rise in voltage results in a 50 % rise in current on the CT circuit. Once the knee point has been reached and the CT saturated, reduce the voltage slowly.
+
+The magnetizing curves will now be plotted on the Noteboks screen. This information can be stored for futher reference or can be printed.  
+
+Current Transformer Ratio & Polarity Test. 
+
+The following equipment will be needed.
+1 Personal Computer, eg. Notebook.
+1 Current injection set .
+1 PROMET CT & VT Tester.
+Various test leads.
+
+							Fig 3
+		Figure 3: Connection configuration for the current transformer and ratio test
+	   
+	   Procedure:
+Connect the PROMET mains cable to the 220 volt supply, connect the RS232 cable to the PROMET and the serial port on the Notebook. Start the software.
+
+Connect the various leads as indicated in Fig 3. When all connection have been made and the relevant CT information has been filled in, the Polarity & Ratio test can be started.  
+
+NOTE: That the leads must be connected  in the correct order, to ensure the correct information with regards to the polarity and ratio test.
+
+Turn the variac control knob slowly untill 20 % of the rated current is reached. The PROMET will pass the information to the Notebook. Once 20 % has been reached the Notebook will notify the user. 
+
+The CT ratio formula is as follows:		Primary Test Current
+						CT =    Secondary Test Current
+
+The Ratio & polarity information will now be shown on the Notebooks screen. This information can be stored for futher reference or can be printed.
+
+
+Voltage Transformer Ratio & Polarity Test. 
+
+The follwoing equipment will be needed.
+1 Personal Computer, eg. Notebook.
+1 Voltage injection set .
+1 PROMET CT & VT Tester.
+Various test leads.
+												   						   Fig 4
+		Figure 4: Connection configuration for the voltage transformer and ratio test
+Procedure:
+Connect the PROMET mains cable to the 220 volt supply, connect the RS232 cable to the PROMET and the serial port on the Notebook. Start the software.
+
+Connect the various leads as indicated in Fig 4. When all connection have been made and the relevant VT information has been filled in, the Polarity & Ratio test can be started.  
+
+NOTE: That the leads must be connected up in the correct order, to ensure the correct information with regards to the polarity and ratio test.
+
+Turn the variac control knob slowly untill 220 V is reached. The PROMET will pass the information to the Notebook. 
+
+The VT ratio formula is as follows:		Primary Test Voltage										CT =    Secondary Test Voltage
+
+The Ratio & polarity information will now be shown on the Notebooks screen. This information can be stored for futher reference or can be printed.
+
+
+
+    	                            Technical Data:
+POWER SUPPLY	
+Mains Connection			220 V AC
+Current Consumption			20 mA
+Weight		
+Size					260 x 125 x 64 mm
+Case Material				0.9mm coated  steel with a mid-grey epoxy powder finish
+Type Of Protection			IP 55
+Ambient Temperature In Degree's Centigrade   	-10 ........ 80 /*C
+		
+CPU 		
+CPU Make				80C552
+Memory                  ( ROM )		64 K
+Frequency Response			2 kHz min
+Common Mode Rejection Ratio		
+                            ( 40 ..... 60Hz ) 		70db min
+Basic Error  ( at 20*C )		
+                            % of full scale		0.1 %
+Temperature Coefficient		
+                             % of full scale		0.005 / *C
+Non-linearity  % of full scale		0.025 %
+Settling Time, step input/output		
+                             100% to 0.1%		1 us max.
+CPU Clock Frequency			11.0592 kHz
+Real Time Clock				PC's clock for time and date stamping.   
+Operating Limits				-10*C to 80 *C, and 0 to 90% relative humidity 
+
+INPUTS		
+Number Of Voltage Inputs.		2  
+Max. input Voltage.			0 .......500 V 
+Number Of Current  Inputs.		2  
+Max. input Current on  P1	.		0 .......100 A
+Max. input Current on  P2	.		0 .......6 
+Input Resistance for Voltage.		
+Input Impedance	for Voltage.	
+Input Resistance for Current.		
+Input Impedance	for Current.
+Common Mode Rejection Ratio		
+                            ( 40 ..... 60Hz ) 		70 db min
+Basic Error  ( at 20*C  )		
+                            % of full scale		0.025 %
+Temperature Coefficient		
+                             % of full scale		0.005 / *C
+Non-linearity  % of full scale		0.025 %
+
+
+
+
+COMMUNICATIONS		
+Communication Ports			1 x DB 9 pin plugs
+Type Of Communication			RS 232
+Communication Baud Rate		Auto detection.
+Max Communication  Distance		for RS 232  max distance 10 meters
+Communication Protocol			Modbus RTU.
+
+Protection Ratings RS232 		
+Max Perm. Operating Voltage		15 V DC
+Leakage Current Il with V max		< = 10 ua
+Nominal surge current isn (8/20)		5 kA
+Output Voltage Threshold At 
+1 KV/us        normal/common gnd		< = 27 V / >= 27 V
+                     common PE			< = 800 V
+Response Time ts normal/common gnd	< = 1ns
+                     common PE			< = 100 ns
+Cutoff Frequency fg (3db)                    
+         normal in 50 ohm/600ohm		> 3 MHz/ > 300 MHz
+         common in 50 ohm/600ohm		> 3 MHz/ > 300 MHz
+Connection Type				D type 9 pin
+	
+
+
+
+
+

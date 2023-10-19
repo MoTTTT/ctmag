@@ -1,0 +1,93 @@
+<HTML>
+<HEAD>
+   <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+   <META NAME="Generator" CONTENT="Microsoft Word 97">
+   <META NAME="GENERATOR" CONTENT="Mozilla/4.04 [en] (Win95; I) [Netscape]">
+   <TITLE>html.tests-mag-ect.</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" LINK="#0000FF" VLINK="#800080">
+<B>MAGNETISATION CURVE TEST</B>
+
+<P>Activating the <B>Strart Mag Curve Test </B>button<B> </B>would initialise
+the Magnetisation Curve Test. The Promet unit transmit sensor data via
+the RS232 serial link to the application front end (see Test Setup). The
+voltage and current readings for the respective channels are displayed
+in the status textfield just below the menu-bar. Increase the applied variac
+voltage to the CT being tested . When a kneepoint is detected the application
+sounds a beep to indicate that the variac must not be turned any further
+i.e. do not increase the applied voltage to the CT under test. Wait approximately
+5 seconds for the CT to settle then decrease the applied voltage to the
+CT (see the <B>Magcurve Test Procedure </B>document for a detailed description
+of the test procedure). A second beep would indicate that the test is finished
+and the resultant characteristic curve for the tested CT is displayed in
+the <B>CT Magnetisation Curve Panel</B> with the kneepoint indicated as
+the main kneepoint in the results panel. When the <B>Magnetisation Curve
+Test</B> is running the start and phase assignment buttons will be grayed
+out (deactivated) while the <B>Stop Test</B> button is ungrayed (activated)
+for the purpose of stopping the test whenever the user feels fit. When
+a test is completed the measered characteristic curve can be assigned to
+one of the phases.
+
+<P>If the <B>Mag Current Threshold</B> or the <B>Mag Voltage Threshold</B>
+is reached the test would be aborted as a safety mechanism. The application
+would sound a beep and the text displayed in the status textfield would
+indicate that a threshold have been reached resulting in a failed test
+situation. Immediately decrease the applied voltage to the CT to 0V.
+
+<P><B>(CT) CURRENT RATIO TEST - Measures Polarity &amp; Ratio: indicated
+in Results Panel.</B>
+
+<P>Activating the <B>Strart Current Ratio Test </B>button<B> </B>would
+initialise the <B>CT</B> ratio test.&nbsp; The Promet unit transmit sensor
+data via the RS232 serial link to the application front end (see <B>Test
+Setup</B>). When the current threshold for the Cp measurement is reached
+(set in the Options menu item, <B>Current Ratio Threshold</B>) the test
+is finished. While the <B>Current Ratio Test </B>is running the start and
+phase assignment buttons will be grayed out (deactivated) and the <B>STOP
+TEST</B> button ungrayed (activated) for the purpose of stopping the test
+whenever the user feels fit. The <B>Current Ratio Test </B>measures the
+relationship between the Primary and Secondary currents of the CT Transformer,
+when the primary current reaches the specified threshold the test is finished,
+the application would sound an end of test beep and a dialogue box appears
+with a dual textfield:
+<OL>
+<LI>
+measured current ratio (displayed as a ratio of measured primary to secondary
+current) and,</LI>
+
+<LI>
+measured polarity (indicated as either Yes (correct)/ No (faulty).</LI>
+</OL>
+<B>&nbsp;</B>The measured results can now be assigned to a phase by selecting
+the appropriate phase assignment button or ignored by selecting the <B>STOP
+TEST</B> button.
+
+<P><B>VOLTAGE RATIO TEST- Measures Polarity &amp; Ratio: indicated in Results
+Panel.</B>
+
+<P>Activating the <B>Strart Voltage Ratio Test </B>button<B> </B>would
+initialise the <B>VT</B> ratio test. The Promet unit transmit sensor data
+via the RS232 serial link to the application front end (see <B>Test Setup</B>).
+When the voltage threshold for the Vp measurement is reached (set in the
+Options menu item, <B>Voltage Ratio Threshold</B>) the test is finished.
+While the <B>Voltage Ratio Test </B>is running the start and phase assignment
+buttons will be grayed out (deactivated) and the <B>STOP TEST</B> button
+ungrayed (activated) for the purpose of stopping the test whenever the
+user feels fit. The <B>Voltage Ratio Test </B>measures the relationship
+between the Primary and Secondary voltages of the <B>VT</B> Transformer,
+when the primary voltage reaches&nbsp; the specified threshold the test
+is finished, the application would sound an end of test beep and a dialogue
+box appears with a dual textfield:
+<OL>
+<LI>
+measured voltage ratio (displayed as a ratio of measured primary to secondary
+voltage) and,</LI>
+
+<LI>
+measured polarity (indicated as either Yes (correct)/ No (faulty).</LI>
+</OL>
+<B>&nbsp; </B>The measured results can now be assigned to a phase by selecting
+the appropriate phase assignment button or ignored by selecting the <B>STOP
+TEST</B> button.
+</BODY>
+</HTML>

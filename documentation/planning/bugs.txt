@@ -1,0 +1,15 @@
+Fixes to the production version
+
+TO DO:
+
+Bug fixes
+    Operation on non Y2K conformant platforms
+    Date and time are GMT    
+
+Show stoppers
+
+
+DONE:
+    Set time out threshold for all tests
+    Test Watchdog Timer
+	

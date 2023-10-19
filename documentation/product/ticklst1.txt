@@ -1,0 +1,163 @@
+Test Report
+
+PROMET CT & VT Calibration Tester
+
+General Settings
+
+Item					Description
+
+Recorded by				Editable 
+Supply Authority			Editable 
+Substation				Editable 
+Feeder					Editable 
+File Name				Not editable, display saved filename
+
+
+
+VT Settings panel
+
+VT Tab panel				Selectable
+Make					Select choice & edit
+Type					Select choice & edit
+Class					Select choice & edit
+Phase					Select  choice
+Description				Editable 
+Serial no.				Editable 
+IL					Editable 
+Ratio					Editable 
+VA Rating				Editable 
+
+
+
+CT Settings panel
+
+CT Tab panel				Selectable
+Make					Select choice & edit
+Type					Select choice & edit
+Class					Select choice & edit
+Application				Select choice & edit
+RED serial no.				Editable 
+WHT serial no.				Editable
+BLU serial no.				Editable 
+Ratio					Editable 
+VA Rating				Editable 
+
+
+Comments:
+
+
+
+
+
+
+
+Magnetisation Curve Test 
+
+Start Magcurve Test			Activate the Magnetisation curve test, receive data via the com port.
+Stop the Magcurve Test 			Stop the Magcurve test, application return to a neutral state.
+Beep at kneepoint and end of test	Application beep when kneepoint reached, reduce the injected current until second beep that indicates end of test.
+Draw maincurve				The magnetisation curve of tested CT drawn at end of test in the CT Magnetisation Curve canvas.
+Draw the up curve			Selected in OptionsDialog, up curve drawn in green at end of test. Only drawn in the CT Magnetisation Curve canvas.
+Draw curve real time			Selected in OptionsDialog. Only drawn in the CT Magnetisation Curve canvas.
+Sizing real time curve			Selected in OptionsDialog. Set as a percentage value of maximum display area. If curve too small set higher, if curve cut-off, set lower.
+Main Kneepoint				Magcurve Results Panel. Voltage and current reading of kneepoint for the tested CT.
+Assign to phase				Assign the tested curve to one of 3 phases. Results displayed for the selected phase.
+Draw 3-phase curves			Redraw the maincurve as the selected phase curve in the 3 Phase CT Magnetisation canvas.
+Print kneepoint results in report	Print kneepoints for the 3 phases in the report.
+Print point table in report		Print a point table for the 3 phases in the report.
+Save a magcurve data file		Save the magnetisation curve data to a text file.
+Import magcurve data into spreadsheet	Import the generated data file into a spreadsheet (e.g. Excel).
+Select magcurve input channels		Select the voltage and current input channels for the magnetisation curve test.
+Set a voltage multiplication factor	Specify a voltage multiplication factor.
+Set voltage threshold			Set a maximum voltage threshold at which to abort the magcurve test.
+Set current threshold			Set a maximum current threshold at which to abort the magcurve test.
+
+
+Comments:
+
+
+
+
+
+
+
+
+Voltage Ratio Test 
+
+Start Voltage ratio test		Activate voltage ratio test. Receive data via the com port.
+Stop Voltage ratio test			Stop the voltage ratio test on activation of the stop test button, application return to a neutral state
+Test complete				Test finishes when the set threshold is reached.
+Set the voltage threshold		Set the Voltage Ratio end of test threshold.
+Polarity				Polarity indicated as OK i.e. in phase, or out of phase, NO.
+Assign to a phase			Assign the result to one of the phases. Result displayed in the results panel.
+Voltage Ratio Results fields correct	The specified ratio for VT, % error calculated, measured ratio, polarity
+Report					Voltage Ratio results printed in the report.
+
+
+Comments:
+
+
+
+
+
+
+
+
+Current Ratio Test 
+
+Start Current ratio test		Activate current ratio test. Receive data via the com port.
+Stop Current ratio test			Stop the current ratio test on activation of the stop test button, application return to a neutral state
+Test complete				Test finishes when the set threshold is reached.
+Set the current threshold		Set the Current Ratio end of test threshold.
+Polarity				Polarity indicated as OK i.e. in phase, or out of phase, NO.
+Assign to a phase			Assign the result to one of the phases. Result displayed in the results panel.
+Current Ratio Results fields correct	The specified ratio for CT, % error calculated, measured ratio, polarity
+Report					Current Ratio Results printed in the report.
+
+
+Comments:
+
+
+
+
+
+
+
+
+Miscellaneous
+
+Next Test functional			Clear the results and curves, maintain the entered settings.
+Save Test As 				Save the recorded test to file in the directory tree.
+Save Test				Short cut save to file without dialog if the test has already been saved once.
+Import test from file			Import the recorded test from file.
+COM port selection 			Select the COM port for serial communication.
+Time Out				Specify time out threshold for serial comms. 
+Help operational			Help menu item linked to relevant help HTML files.
+All enabled menu items selectable	Menu items not greyed out are enabled.
+All short cut keys operational		Menu item key strokes. 
+Exit					Exit application without saving information.
+
+
+Comments:
+
+
+
+
+
+
+
+Error conditions:
+
+
+
+
+
+
+
+Recorded by:				Signature:
+
+
+
+Date:					Version no.:
+
+

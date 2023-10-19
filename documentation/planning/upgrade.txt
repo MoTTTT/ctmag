@@ -1,0 +1,89 @@
+Upgrades scheduled for the development version
+
+Change requests
+-Add reference number: e.g. "REF NO"
+-Logo of Jacques Odendal(Private metering and protection company): 
+    possibly a Reyrolle, QSolutions and PROMET logo)
+-Help file printing
+-Verify tester connectivity/presence at program load time
+-Change status text field font to Red when kneepoint is detected
+-Audible beep tester
+-Default to realtime and upcurve 
+-Draw graph during ratio tests    
+
+
+Auto Save Settings
+-com port
+-dimensions of application
+-graphics (upsweep & draw_real_time)
+-active tab pannel	new
+
+Save Options
+-drawing options	new
+-channels & scaling
+-etc
+
+Migrate to Swing (AWT 1.1)
+-tables instead of text fields & combo boxes
+-Tool Pannel
+
+Drawing Improvements
+Options
+-Extrapolate to origin
+-Kneepoint cross hairs
+-Draw up-curve
+-Activate Upcurve
+-Test Extents for upcurve
+-View options: Tool pannel, action bar, 
+-Report Options
+Real Time Graphics
+Save unextrapolated curves
+Test Overlays
+Make graphs pretty
+-ticks on axiz
+-crosshairs for kneepoint
+-values on axis ticks
+-click to zoom
+
+Demo Mode
+-read in saved data file (demoX.cmt) and display
+
+Security
+-copy protection mechanism
+-default to demo mode
+
+Instalation Program/Tool
+
+Improve Help 
+
+Improve robustness and error reporting
+-watchdog timer on tests
+-error object
+-pop-up dialog box error messages
+-provide diagnostic suggestions
+
+Optimisation
+-JVM upgrade
+-Speed up start up time
+	-dont instantiate objects at initialisation
+	-instantiat testcontrol engine at first test
+
+Command line arguments
+-test name
+
+Defaults
+-file extentions (cmt , txt)
+
+Reports
+-Options for content
+	-number of rows in table
+	-table spacing
+-Fix printing (JVM upgrade)
+
+Text Report
+-Test Settings
+-Results
+
+Documentation
+Curve Graphics Examples
+

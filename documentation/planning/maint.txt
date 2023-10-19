@@ -1,0 +1,54 @@
+Fixes to the production version
+
+TO DO:
+
+Bug fixes
+    Set time out threshold for all tests
+    Test Watchdog Timer
+    Operation on non Y2K conformant platforms
+
+Show stoppers
+
+Code Cleanup
+    Remove superfluous objects
+    Remove redundant code
+    Question all global variables
+    Question all methods
+	
+Documentation
+    Test plan
+    Tick sheet
+    Update on line help
+    Document source code
+
+DONE:
+
+Scaling
+Channel Selection
+
+Options
+	Sensor Fullscale values: per magcurvetest
+	Scaling of Voltage channel: per magcurvetest
+	Channels for MC test: Per magcurve
+
+
+Options
+	Draw upsweep
+	Real Time
+	Real Time full scale (percentage)
+		10% minimum, 100% maximum
+
+
+End of test: constant voltage readings below a specified minimum voltage
+	threshold (set to 20% of kneepoint).
+Real time graphics
+Plot 3 sections on main curve
+
+
+Text output
+-Report	( menu option: save data file)
+	Header
+	Test settings pannels  (leave for dev version)
+	Results table (leave for dev version)
+	Curve array in volts and milliamps
+	

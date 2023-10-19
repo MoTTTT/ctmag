@@ -1,0 +1,77 @@
+			Meeting held between Qsolutions, Probotech & Ei_Lec
+				on the 9-07-1998 @ 19Hr00
+		
+
+	Present: Martin.
+		  Wynand.
+		  Glen.
+		  Gary.
+
+		Agenda was excepted.
+
+						Topics Discussed.
+
+	1. Borehole controller.
+	2. Keypad.
+	3. Magcurve tester.
+	4. Future products.
+	5. Moines.
+
+					
+						Borehole Controller.
+
+	Topic					Response				Responsible persons	
+
+	1. Documentation			+  2 days, Delivery end of project.		MC.
+	2. Modbus				Still in hand, time out problem.   		MC, C vd W
+	3. I2C Bus.				Complete.
+	4. Real time clock			Still to test.					MC.
+	5. Installation at site & site testing.  	Month end, 30-7-98 - 20-8-98		GR.
+	6. Radio testing.			Complete, need to adjust time outs		GR, C vd W
+	7 Project completion			middle of  10-98
+
+						
+						Keypad.
+
+	Topic					Response				Responsible persons	
+
+	1. I2C interface to borehole controller. Final testing.					M.C.
+	2. New matrix interface.		middle 10/98					M.C.
+	3. Software completion.		middle 10/98					M.C.
+	4. Fitting to control panel.		middle 10/98					GR, G.T.	
+	5. Project completion.			middle 10/98					GR, G.T, M.C
+
+					
+	Magcurve Tester.
+
+	Topic					Response				Responsible persons	
+
+	1. Hardware and packaging completion	3 weeks ( 1week Aug)			GR, G.T.			2. Serial  port frame handler			1 week.				M.C.
+	3 a. Modbus fuctions slave.			Complete.				M.C.
+	3 b. Modbus fuction master			1 week.				M.C.
+	4. Polling eng.					1 week.				M.C.
+	5. Data base.					1 week.				M.C.
+	6. java user eng.				4 week.				M.C.
+	7. Pre test at Glen, hardware & software 	1st week Oct 98.			GR, G.T, M.C
+	8. Test at Eskom				2 nd week Oct 98.			GR, G.T, M.C
+	9. Final Docomentation			Mid Oct 98.				GR, G.T, M.C
+	10. Project complete				Mid Oct 98.				GR, G.T, M.C
+	11. Cost saving ?				To be acessed.				GR, G.T, M.C
+
+
+						Products &New Products.
+
+	Topic					Response				Responsible persons	
+
+ 	1. Ductor tester, radio modules & modems,  Rs 232 surge arestors etc.		GR, G.T, M.C
+	2. Magcurve tester pricing to be adjusted on completion of first Unit.		GR, G.T, M.C
+	3. Sales of 5 magcurve units by Jan 99. 						GR.
+
+
+						Monies.
+
+	Topic					Response				Responsible persons	
+
+	1.Payment still outstanding to Probotech & Qsolutions.			GR
+	2. Monies owed to Glen. To invoice Qsolutions.				GT, MC.
+

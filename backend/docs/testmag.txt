@@ -1,0 +1,44 @@
+/*			Copyright Q Solutions				*/
+/*	File:		testmag.txt					*/
+/*	Programmer:	W.A						*/
+/*	Project:	Current Transformer Magnetizing Curve Tester    */
+/*	Modules:	Main CPU board, RS232 board			*/
+/*	Description:	Hardware test and porting report		*/
+/* 8:40 29/06/1998 							*/
+/*									*/
+/*									*/
+/******************************************************************************/
+Main CPU board:		
+                     	Test:
+				Program A/D, RS232 comms at 9600 baud.
+				Do the necessary hardware configuration to
+				test A/D and RS232 comms.
+				CPU remains in reset mode.
+
+			Debug:	
+				DS1232 chip faulty, reset constantly set.
+				R14 (100R) not inserted.
+
+				Replace DS1232 IC with DS1232 from BHC board.
+				Place R14 on board.
+
+				Board operational and D/A and RS232 software
+				fully portable using large memory model. D/A
+				converters are working correctly (channels 0-3).
+ 
+
+RS232 board			
+			Test:
+				RS232 comms tested O.K. at 9600 baud.
+
+Test software
+                        Test:
+                                Test the A/D channels and RS232 comms. Approx.
+                                5% corruption of data Tx.
+    
+                        Debug:
+                                Serial buffer overflow. A/D conversions faster
+                                than the RS232 can Tx, result in corruption of
+                                data in the circular Tx buffer. Wait until Tx
+                                buffer empty, indicated by clearing of the s_run
+                                flag before starting a next A/D conversion.
