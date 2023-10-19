@@ -1,3 +1,8 @@
+//*****************************************************************
+// Gets instantiated and called from testhandler. Read in the selected
+// serialised MagCurveTest.
+//*****************************************************************
+
 import java.lang.*;
 import java.io.*;
 import java.beans.*;
@@ -22,6 +27,11 @@ class ImportSequentialFile implements java.io.Serializable
     {
        openFileDialog1 = f; 
     }    
+     
+//*****************************************************************
+// Read in the serialised MagCurveTest object. Pass the imported
+// test object on to Ctmag and ImportTest.
+//*****************************************************************     
             
     public MagCurveTest getFile(String s)
     {
@@ -35,8 +45,7 @@ class ImportSequentialFile implements java.io.Serializable
             magcurvetest.setTestname(openFileDialog1.getFile());
             ctmag.importMagCurveTest(magcurvetest);
             ctmag.importtest.getImportTest();
-            ctmag.setTitle("CT & VT Calibration Tester - " + s);
-            
+            ctmag.setTitle("CT & VT Calibration Tester - " + s);            
         }
 
         catch(FileNotFoundException fnfe){

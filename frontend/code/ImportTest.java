@@ -1,4 +1,12 @@
+//**************************************************************
+// Handles the importing of a test i.e. displaying the data pertaining 
+// to the imported test on the front end of the application. Handles
+// the Next Test functionality. Gets called by the TestControlEngine
+// and ImportSequentialFile.
+//**************************************************************
+
 import java.lang.*;
+
 public class ImportTest extends java.lang.Object
 {
     private Ctmag ctmag;
@@ -217,6 +225,38 @@ public class ImportTest extends java.lang.Object
         importVoltageRatioResults();        
     }
     
+    private void importCurrentRatioResults()
+    {
+        ctmag.currentratioresultshandler.getEnteredRatios();
+
+        for (int i = ctmag.magcurvetest.RED; i <= ctmag.magcurvetest.BLUE; i++)
+        { 
+            if(ctmag.currentratioresultshandler.showTestedPhaseRatios(i))
+            {
+                ctmag.currentratioresultshandler.showTruePhaseRatio(i);            
+                ctmag.currentratioresultshandler.showMeasError(i);        
+                ctmag.currentratioresultshandler.showPhasePolarity(i);        
+            }
+            else
+            {   
+                if(i == ctmag.magcurvetest.RED)
+                {
+                    clearRedCTResults();
+                }
+                
+                if(i == ctmag.magcurvetest.WHITE)
+                {
+                    clearWhiteCTResults();
+                }   
+                
+                if(i == ctmag.magcurvetest.BLUE)
+                {
+                    clearBlueCTResults();
+                }                                
+            }
+        }
+    }        
+    
     private void importVoltageRatioResults()
     {
         ctmag.voltageratioresultshandler.getEnteredRatios();
@@ -273,38 +313,6 @@ public class ImportTest extends java.lang.Object
         ctmag.voltageratioresults.bluevoltpolratiotextfield.setText("");               
     }
             
-    private void importCurrentRatioResults()
-    {
-        ctmag.currentratioresultshandler.getEnteredRatios();
-
-        for (int i = ctmag.magcurvetest.RED; i <= ctmag.magcurvetest.BLUE; i++)
-        { 
-            if(ctmag.currentratioresultshandler.showTestedPhaseRatios(i))
-            {
-                ctmag.currentratioresultshandler.showTruePhaseRatio(i);            
-                ctmag.currentratioresultshandler.showMeasError(i);        
-                ctmag.currentratioresultshandler.showPhasePolarity(i);        
-            }
-            else
-            {   
-                if(i == ctmag.magcurvetest.RED)
-                {
-                    clearRedCTResults();
-                }
-                
-                if(i == ctmag.magcurvetest.WHITE)
-                {
-                    clearWhiteCTResults();
-                }   
-                
-                if(i == ctmag.magcurvetest.BLUE)
-                {
-                    clearBlueCTResults();
-                }                                
-            }
-        }
-    }
-    
     private void clearRedCTResults()
     {
         ctmag.currentratioresults.redampresultratiotextfield.setText("");       

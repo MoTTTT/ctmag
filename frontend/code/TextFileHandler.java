@@ -1,3 +1,7 @@
+//************************************************************
+// Handels the saving of a test to a text file.
+//************************************************************
+
 import java.lang.*;
 import java.awt.event.*;
 import java.io.*;
@@ -18,6 +22,9 @@ public class TextFileHandler extends java.lang.Object implements java.awt.event.
         textfiledialog.setFilenameFilter(this);
 //		System.out.println("FilenameFilter : " + textfiledialog.getFilenameFilter());        
     }  
+
+//************************************************************
+//************************************************************
     
     public void actionPerformed(ActionEvent e)
     {
@@ -25,11 +32,23 @@ public class TextFileHandler extends java.lang.Object implements java.awt.event.
        saveTestFileDialog();
        
     }
+
+//************************************************************
+// Must declare the accept() method, otherwise TextFileHandler 
+// is an abstract class.
+//************************************************************
+
     public boolean accept(File dir, String name)
     {
         System.out.println("test the extension");
         return name.endsWith(".txt");
     }
+
+//************************************************************
+// Instantiate a new TextFileDialog using the previous file
+// and directory selections. Get the new file and directory 
+// selections.
+//************************************************************
 
     private void saveTestFileDialog()
     {
@@ -49,6 +68,10 @@ public class TextFileHandler extends java.lang.Object implements java.awt.event.
 		if(newDirectory != null && newFile != null)
 		    saveTextFile(newDirectory,newFile);	
     } 
+
+//************************************************************
+// Save the test as a text file to the selected file and directory.
+//************************************************************    
     
     private void saveTextFile(String dir, String file)
     {

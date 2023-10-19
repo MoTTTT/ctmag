@@ -1,3 +1,8 @@
+//**************************************************************
+// Heading of the report. Display the name of the unit, date and 
+// time when the test was conducted.
+//**************************************************************
+
 import java.awt.*;
 import java.beans.*;
 class ReportHeader extends java.awt.Panel 

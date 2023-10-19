@@ -1,3 +1,8 @@
+//**************************************************************
+// Handles the convertion and display of the VT Ratio, gets called
+// from the TestControlEngine and ImportTest.
+//**************************************************************
+
 import java.lang.*;
 import java.text.DecimalFormat;
 
@@ -39,31 +44,12 @@ class VoltageRatioResultsHandler extends java.lang.Object
     {
        magcurvetest = m; 
     } 
-    
-    public void showTestedVoltagePolarity()
-    {
-       
-        if(ctmag.magcurvetest.holding_voltpolarity == 0)        
-            ctmag.ratiodialog.holdingpolaritytextfield.setText(
-            "No");
-        else
-            ctmag.ratiodialog.holdingpolaritytextfield.setText(
-                "Yes");
-    }
-    
-    public void showTestedVoltageRatio()
-    {
-        int volt_prim = ctmag.testcontrolengine.channel_max_val[ctmag.testcontrolengine.VP];
-        int volt_secon = ctmag.testcontrolengine.channel_max_val[ctmag.testcontrolengine.VS];
-        int bitmax = ctmag.testcontrolengine.FULLSCALE;
-        
-        measuredsecondaryvtwindings = magcurvetest.holdingvoltageratio.
-            getX()*volt_secon/bitmax;            
-        measuredprimaryvtwindings = magcurvetest.holdingvoltageratio.
-            getY()*volt_prim/bitmax;            
-        convertMeasuredVTRatios();
-        ctmag.ratiodialog.holdingratiotextfield.setText(""+displayprimaryvtwindings+" : "+precision2.format(displaysecondaryvtwindings));        
-    }
+
+//****************************************************************
+// Method to display the measured ratios in the same format as was
+// entered as the expected ratio i.e. display the measured ratio 
+// in terms of the primary entered ratio.
+//****************************************************************
     
     public void convertMeasuredVTRatios()
     {
@@ -81,10 +67,37 @@ class VoltageRatioResultsHandler extends java.lang.Object
         }
         catch (ArithmeticException a){
             convertedsecondaryvtwindings = 0;
+        }        
+    }
+
+//**************************************************************
+// Get the entered primary and secondary ratios.
+//**************************************************************
+
+    public void getEnteredRatios()
+    {
+        try
+        {
+            trueprimaryvtwindings = magcurvetest.getTruePrimVTRatio();
+        }
+        catch(NullPointerException npe)
+        {
+            ctmag.statustextfield.setText("Integer values must be entered for the primary to secondary VT ratio before starting the test.");
         }
 
-        
-    }
+        try
+        {
+            truesecondaryvtwindings = magcurvetest.getTrueSeconVTRatio();
+        }
+        catch(NullPointerException npe)
+        {
+            ctmag.statustextfield.setText("Integer values must be entered for the primary to secondary VT ratio before starting the test.");            
+        }        
+    }    
+
+//**************************************************************
+// Show the entered ratio for the specified phase.
+//**************************************************************    
     
     public void showTruePhaseRatio(int phase)
     {
@@ -110,6 +123,42 @@ class VoltageRatioResultsHandler extends java.lang.Object
         }
     }
 
+//**************************************************************
+// Display the measured polarity for the phase under test.
+//**************************************************************
+    
+    public void showTestedVoltagePolarity()
+    {       
+        if(ctmag.magcurvetest.holding_voltpolarity == 0)        
+            ctmag.ratiodialog.holdingpolaritytextfield.setText(
+            "No");
+        else
+            ctmag.ratiodialog.holdingpolaritytextfield.setText(
+                "Yes");
+    }
+    
+//**************************************************************
+// Display the tested ratio for the phase under test.
+//**************************************************************
+    
+    public void showTestedVoltageRatio()
+    {
+        int volt_prim = ctmag.testcontrolengine.channel_max_val[ctmag.testcontrolengine.VP];
+        int volt_secon = ctmag.testcontrolengine.channel_max_val[ctmag.testcontrolengine.VS];
+        int bitmax = ctmag.testcontrolengine.FULLSCALE;
+        
+        measuredsecondaryvtwindings = magcurvetest.holdingvoltageratio.
+            getX()*volt_secon/bitmax;            
+        measuredprimaryvtwindings = magcurvetest.holdingvoltageratio.
+            getY()*volt_prim/bitmax;            
+        convertMeasuredVTRatios();
+        ctmag.ratiodialog.holdingratiotextfield.setText(""+displayprimaryvtwindings+" : "+precision2.format(displaysecondaryvtwindings));        
+    }
+
+//**************************************************************
+// Show the measured polarity for the selected phase.
+//**************************************************************    
+    
     public void showPhasePolarity(int phase)
     {
         switch(phase)
@@ -145,12 +194,10 @@ class VoltageRatioResultsHandler extends java.lang.Object
                 break;            
         }        
     }
-    
-    private void calculateRatiosError(int phase)
-    {
-        trueratio[phase] = trueprimaryvtwindings/truesecondaryvtwindings;
-        measuredratio[phase] = measuredprimaryvtwindings/measuredsecondaryvtwindings;
-    }
+
+//**************************************************************
+// Display a converted measured ratio for a selected phase.
+//**************************************************************        
         
     private void getCalculatedRatios(int phase)
     {
@@ -170,27 +217,11 @@ class VoltageRatioResultsHandler extends java.lang.Object
         percentage_error[phase] = ((measuredratio[phase]/ trueratio[phase])-1)* HUNDRED_PERCENT;
     }
 
-    public void getEnteredRatios()
-    {
-        try
-        {
-            trueprimaryvtwindings = magcurvetest.getTruePrimVTRatio();
-        }
-        catch(NullPointerException npe)
-        {
-            ctmag.statustextfield.setText("Integer values must be entered for the primary to secondary VT ratio before starting the test.");
-        }
-
-        try
-        {
-            truesecondaryvtwindings = magcurvetest.getTrueSeconVTRatio();
-        }
-        catch(NullPointerException npe)
-        {
-            ctmag.statustextfield.setText("Integer values must be entered for the primary to secondary VT ratio before starting the test.");            
-        }        
-    }    
-    
+//**************************************************************
+// Show the percentage error for the measured ratio of a specified
+// phase.
+//**************************************************************
+                        
     public void showMeasError(int phase)
     {
         switch(phase)
@@ -220,7 +251,12 @@ class VoltageRatioResultsHandler extends java.lang.Object
                     break;                                
         }
     }
-    
+
+//**************************************************************
+// Gets called from TestControlEngine when a VT Ratio test gets
+// assigned to a phase.
+//**************************************************************    
+        
     public void showPhaseRatio(int phase)
     {
         getCalculatedRatios(phase);
@@ -253,6 +289,11 @@ class VoltageRatioResultsHandler extends java.lang.Object
         }
     } 
 
+//**************************************************************
+// Gets called from ImportTest. Import the measured ratio for the 
+// specified phase from a test and display the converted result.
+//**************************************************************    
+        
     public boolean showTestedPhaseRatios(int phase)
     {
         getCalculatedRatios(phase);
@@ -291,5 +332,5 @@ class VoltageRatioResultsHandler extends java.lang.Object
             }
         }
             return true;
-    }        
+    }      
 }

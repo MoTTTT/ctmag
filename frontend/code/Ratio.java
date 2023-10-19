@@ -1,3 +1,7 @@
+//***********************************************************************
+// The Object Ratio stores the measured ratios in the magcurvetest. 
+//***********************************************************************
+
 import java.io.*;
 class Ratio extends Datum implements java.io.Serializable     
 {

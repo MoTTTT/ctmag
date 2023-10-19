@@ -1,3 +1,7 @@
+//**************************************************************
+// Draws the 3 phase graphs on the canvas. 
+//**************************************************************
+
 import java.awt.*;
 
 class PhaseCanvas extends MainCanvas 
@@ -65,17 +69,11 @@ class PhaseCanvas extends MainCanvas
         x_base_x1 = x_axis_start;   // xy start & stop
         x_base_y1 = y_axis_stop;    // coordinates of
         x_base_x2 = x_axis_stop;    // x-axis.
-        x_base_y2 = y_axis_stop;
-               
+        x_base_y2 = y_axis_stop;               
     }
 
     protected void readDataIn(Curve c, int phase)
     {       
-//        fullscale = c.getFullscale();
-        
-//        phase_current_threshold[phase] = c.getCurrentThreshold();
-//        phase_voltage_threshold[phase] = c.getVoltageThreshold(); 
-
         phase_current_threshold[phase] = c.getLastCurrent();
         phase_voltage_threshold[phase] = c.getLastVoltage(); 
 
@@ -88,27 +86,29 @@ class PhaseCanvas extends MainCanvas
     {
             max_last_current = current;
             max_last_voltage = voltage;
-//        x_axis_increment = (float)x_axis_length / max_last_current;
-//        y_axis_increment = (float)y_axis_length / max_last_voltage;               
     }
     
     public void setFullScaleIncrements()
     {
         max_last_current = (fullscale-1);
         max_last_voltage = (fullscale-1);
-//        x_axis_increment = (float)x_axis_length / (fullscale-1);
-//        y_axis_increment = (float)y_axis_length / (fullscale-1);       
     }   
 
+    public void resetData(int phase)
+    {
+        for (int i = 0; i < (fullscale); i++)
+           display_data[phase][i] = 0;    
+    }  
+
+//**************************************************************
+// Draw the axis and headings, determine what phases need to be
+// drawn.
+//**************************************************************
 
     public void paint (Graphics g)
     {
         initValues();
         initMagCurveString();
-        
-//        x_axis_increment = (float)x_axis_length / (fullscale-1);
-//        y_axis_increment = (float)y_axis_length / (fullscale-1);       
-
 
         g.setColor(Color.black);
         g.drawLine(y_base_x1, y_base_y1, y_base_x2, y_base_y2);
@@ -136,22 +136,9 @@ class PhaseCanvas extends MainCanvas
         return false;
     }
 
-
-    public void resetData( )
-    {
-        for (int j = 0; j < MAX_PHASE; j++)
-        {
-            for (int i = 0; i < (fullscale); i++)
-                display_data[j][i] = 0;    
-        }
-    }  
-
-    
-    public void resetData(int phase)
-    {
-        for (int i = 0; i < (fullscale); i++)
-           display_data[phase][i] = 0;    
-    }  
+//**************************************************************
+//  Draw a phase curve on the 3 phase canvas.
+//**************************************************************
 
     protected boolean displayData(Graphics g, int phase)
     {

@@ -1,3 +1,9 @@
+//************************************************************
+// Displayed table in the TestReport containing measured current
+// and voltage readings taken at 5% increments of the current 
+// reading in the region of the kneepoint.
+//************************************************************
+
 import java.awt.*;
 import java.beans.*;
 import symantec.itools.awt.Label3D;

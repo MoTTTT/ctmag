@@ -1,3 +1,7 @@
+//************************************************************
+// Object contains an x and y reading.
+//************************************************************
+
 import java.io.*;
 class Datum implements java.io.Serializable  
 {

@@ -1,3 +1,7 @@
+//************************************************************
+// Panel containing the Current Transformer settings.
+//************************************************************
+
 import java.awt.*;
 import java.beans.*;
 import symantec.itools.awt.ComboBox;

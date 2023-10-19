@@ -1,3 +1,8 @@
+//****************************************************************
+// Object that contains all the test information relating to the 
+// magnetisation curve, voltage and current ratio tests.
+//****************************************************************
+
 import java.lang.*;
 import java.io.*;
 import java.util.Calendar;
@@ -109,6 +114,7 @@ public class MagCurveTest implements java.io.Serializable
     {
         return voltage_threshold;
     }
+ 
     public void setCurrentThreshold(int i)
     {
         current_threshold = i;
@@ -143,20 +149,19 @@ public class MagCurveTest implements java.io.Serializable
     {
         holdingcurrentratio.setRatio(in.getRatio());  
     }
+
+    public void setHoldingVoltageRatio(Ratio in)
+    {
+        holdingvoltageratio.setRatio(in.getRatio());          
+    }    
     
     public void setDate()
     {
         date = new Date();
     }
     
-    public void setHoldingVoltageRatio(Ratio in)
-    {
-        holdingvoltageratio.setRatio(in.getRatio());          
-    }
-    
     public void setMainCurve(MagCurve in)
     {
-
         maincurve = in;
         
         if(maincurve.knee.getX() > 0)
@@ -172,12 +177,40 @@ public class MagCurveTest implements java.io.Serializable
         if  ( (phase > BLUE)||(phase< RED))
             return false;            
         vimagcurve[phase] = maincurve;
-//        System.out.println("Assigned MagCurveTest phase : " + phase);
         setMaxMeasPhaseValues();             
         assigned_phases[phase] = true;
         return true;
     }
     
+    public boolean assignCurrentRatio(int phase)
+    {
+        if  ( (phase > BLUE)||(phase< RED))
+            return false;
+        phasecurrentratio[phase].setRatio(
+                holdingcurrentratio.getRatio());  
+        phase_amppolarity[phase]= holding_amppolarity;
+        return true ;
+        
+    }
+
+    public boolean assignVoltageRatio(int phase)
+    {
+        if  ( (phase > BLUE)||(phase< RED))
+            return  false;
+        phasevoltageratio[phase].setRatio(
+                holdingvoltageratio.getRatio());                      
+        phase_voltpolarity[phase]= holding_voltpolarity;
+        return true;        
+    }
+
+//****************************************************************
+// Determine whether kneepoints have been reached and set the max
+// current and voltage readings measured for the magcurve tests.
+// The kneepoints reached determine whether the graphs would be 
+// drawn, while the maximum voltage and current settintgs determine
+// the scaling of the 3 phase graph.
+//****************************************************************
+        
     private void setMaxMeasPhaseValues()
     {
         int temp_last_current = 0, temp_last_voltage = 0;
@@ -207,27 +240,10 @@ public class MagCurveTest implements java.io.Serializable
         }
     }
     
-    public boolean assignCurrentRatio(int phase)
-    {
-        if  ( (phase > BLUE)||(phase< RED))
-            return false;
-        phasecurrentratio[phase].setRatio(
-                holdingcurrentratio.getRatio());  
-        phase_amppolarity[phase]= holding_amppolarity;
-        return true ;
-        
-    }
-
-    public boolean assignVoltageRatio(int phase)
-    {
-        if  ( (phase > BLUE)||(phase< RED))
-            return  false;
-        phasevoltageratio[phase].setRatio(
-                holdingvoltageratio.getRatio());                      
-        phase_voltpolarity[phase]= holding_voltpolarity;
-        return true;        
-    }
-        
+//****************************************************************
+// Methods to get General Settings values.
+//****************************************************************
+            
     public String getTestname()
     {
         return testname;
@@ -248,19 +264,23 @@ public class MagCurveTest implements java.io.Serializable
         return substation;
     }
 
-    public String getRednumber()
-    {
-        return rednumber;
-    }
-
     public String getFeeder()
     {
         return feeder;
     }
+    
+//****************************************************************
+// Methods to get CT Settings values.
+//****************************************************************
 
     public String getCTMake()
     {
         return ctmake;
+    }
+
+    public String getCTType()
+    {
+        return cttype;
     }
 
     public String getCTClassification()
@@ -268,14 +288,14 @@ public class MagCurveTest implements java.io.Serializable
         return ctclassification;
     }
 
-    public String getBluenumber()
-    {
-        return bluenumber;
-    }
-
     public String getCTApplication()
     {
         return ctapplication;
+    }
+
+    public String getRednumber()
+    {
+        return rednumber;
     }
 
     public String getWhitenumber()
@@ -283,15 +303,29 @@ public class MagCurveTest implements java.io.Serializable
         return whitenumber;
     }    
 
+    public String getBluenumber()
+    {
+        return bluenumber;
+    }
+
+    public int getTruePrimCTRatio()
+    {
+        return trueprimctratio; 
+    }
+    
+    public int getTrueSeconCTRatio()
+    {
+        return trueseconctratio;
+    }
+    
     public String getCTVarating()
     {
         return ctvarating;
     }
-
-    public String getCTType()
-    {
-        return cttype;
-    }
+  
+//****************************************************************
+// Methods to get VT Settings values.
+//****************************************************************
 
     public String getVTMake()
     {
@@ -328,41 +362,6 @@ public class MagCurveTest implements java.io.Serializable
         return vtil;
     }        
 
-    public String getVTVarating()
-    {
-        return vtvarating;
-    }        
-
-    public void setTruePrimCTRatio(int i)
-    {
-        trueprimctratio = i;
-    }
-    
-    public void setTrueSeconCTRatio(int i)
-    {
-        trueseconctratio = i;
-    }
-  
-    public void setTruePrimVTRatio(int i)
-    {
-        trueprimvtratio = i;
-    }
-    
-    public void setTrueSeconVTRatio(int i)
-    {
-        trueseconvtratio = i;
-    }
-    
-    public int getTruePrimCTRatio()
-    {
-        return trueprimctratio; 
-    }
-    
-    public int getTrueSeconCTRatio()
-    {
-        return trueseconctratio;
-    }
-  
     public int getTruePrimVTRatio()
     {
         return trueprimvtratio;
@@ -372,6 +371,15 @@ public class MagCurveTest implements java.io.Serializable
     {
         return trueseconvtratio;
     }
+    
+    public String getVTVarating()
+    {
+        return vtvarating;
+    }        
+
+//****************************************************************
+// Methods to set General Settings.
+//****************************************************************
 
     public void setTestname(String s)
     {
@@ -398,6 +406,10 @@ public class MagCurveTest implements java.io.Serializable
         feeder = s;
     }
    
+//****************************************************************
+// Methods to set CT Settings.
+//****************************************************************
+
     public void setCTMake(String s)
     {
         ctmake = s;
@@ -408,6 +420,16 @@ public class MagCurveTest implements java.io.Serializable
         cttype = s;
     }
    
+    public void setCTClassification(String s)
+    {
+        ctclassification = s;
+    }
+      
+    public void setCTApplication(String s)
+    {
+        ctapplication = s;
+    }
+
     public void setRednumber(String s)
     {
         rednumber = s;
@@ -423,21 +445,25 @@ public class MagCurveTest implements java.io.Serializable
         bluenumber = s;
     }
    
-    public void setCTApplication(String s)
+    public void setTruePrimCTRatio(int i)
     {
-        ctapplication = s;
+        trueprimctratio = i;
     }
-   
-    public void setCTClassification(String s)
+    
+    public void setTrueSeconCTRatio(int i)
     {
-        ctclassification = s;
+        trueseconctratio = i;
     }
-   
+
     public void setCTVarating(String s)
     {
         ctvarating = s;
     }
 
+//****************************************************************
+// Methods to set VT Settings.
+//****************************************************************
+  
     public void setVTMake(String s)
     {
         vtmake = s;
@@ -472,6 +498,16 @@ public class MagCurveTest implements java.io.Serializable
     {
         vtil = s;
     }        
+
+    public void setTruePrimVTRatio(int i)
+    {
+        trueprimvtratio = i;
+    }
+    
+    public void setTrueSeconVTRatio(int i)
+    {
+        trueseconvtratio = i;
+    }
 
     public void setVTVarating(String s)
     {

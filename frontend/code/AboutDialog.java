@@ -1,6 +1,6 @@
-/*
-	A basic extension of the java.awt.Dialog class
- */
+//**************************************************************
+// Display the product name and version number.
+//**************************************************************
 
 import java.awt.*;
 

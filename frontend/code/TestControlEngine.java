@@ -1,3 +1,8 @@
+//***************************************************************
+// Control the running of the application. Function as a finite
+// state machine. 
+//***************************************************************
+
 import java.awt.*;
 import javax.comm.*;
 import java.io.*;
@@ -5,10 +10,6 @@ import java.awt.event.*;
 
 public class TestControlEngine implements java.io.Serializable, ActionListener 
 {
-//   public int scaling_factor;    
-//   private int volt_scale[]= {500, 500, 500, 500};
-//   private int amp_scale[]= {1000, 100000, 1000, 100000};   
-
     protected final int CONVERSION_FACTOR = 10000;
     protected final int CS_VAL = 1000; //!!!
     protected final int CP_VAL = 100000; //!!!
@@ -18,8 +19,6 @@ public class TestControlEngine implements java.io.Serializable, ActionListener
     protected final int VP_CS = 1;
     protected final int VS_CP = 2;
     protected final int VP_CP = 3;
-//    protected final int RATIO_VP = 0;    
-//    protected final int RATIO_VP = 1;
 
     protected int VS = 0; //!!!
     protected int VP = 1; //!!!
@@ -50,11 +49,12 @@ public class TestControlEngine implements java.io.Serializable, ActionListener
     protected final int VOLT_MUL = 4;
     protected final int AMP_MUL = 5;
     protected final int CS_SETTING = 6;
+    protected final int SETTINGS_LENGTH = 7;
+
     protected final int RELEASE_NR = 0;
     protected final int LEVEL_NR = 9;
     protected final int BRANCH_NR = 0;
     protected final int SEQUENCE_NR = 0;
-    protected final int SETTINGS_LENGTH = 7;
    
     protected Sampler sampler;
     private int mode;
@@ -100,27 +100,40 @@ public class TestControlEngine implements java.io.Serializable, ActionListener
         mode = NORMAL_MODE;
         fullscale = FULLSCALE;            
         sampler = new Sampler(this);
-        initThresholds(); 
-        setMode(NORMAL_MODE);
-        initOptionsArray();
+        initThresholds();                                           // Initialise the default thresholds to be used for the ctmag abort test, the voltage ratio end of test, the current ratio end of test
+        setMode(NORMAL_MODE);                                       // Set the state of the testcontrolengine to NORMAL which means that the tester is ready to start a test.
+        initOptionsArray();                                         // Write release data to the end of the magcurve data array which would be stored at the end of the test. 
     }
         
+//**************************************************************
+// Convert  the test thresholds to values to be displayed in
+// the OptionsDialog. Write the thresholds to the sampler.
+//**************************************************************
+
     private void initThresholds()
     {
-        voltage_threshold = (VOLTAGE_THRESHOLD * 
-            channel_max_val[volt_chan_select])/ FULLSCALE;
-        current_threshold = (CURRENT_THRESHOLD*
-            channel_max_val[amp_chan_select])/FULLSCALE;
-        voltage_ratio_threshold = (VOLTAGE_RATIO_THRESHOLD*
-            channel_max_val[VP])/FULLSCALE;
-        current_ratio_threshold = (CURRENT_RATIO_THRESHOLD*
-            channel_max_val[CP])/FULLSCALE;
+        voltage_threshold = (VOLTAGE_THRESHOLD *                    // Convert the digital value for the magcurve test voltage threshold 
+            channel_max_val[volt_chan_select])/ FULLSCALE;          //  into a voltage reading to be displayed in the optionsdialog.
+        current_threshold = (CURRENT_THRESHOLD*                     // Convert the digital value for the magcurve test current threshold 
+            channel_max_val[amp_chan_select])/FULLSCALE;            //  into an ampere reading to be displayed in the optionsdialog.
+        voltage_ratio_threshold = (VOLTAGE_RATIO_THRESHOLD*         // Convert the digital value for the voltage ratio end of test threshold  
+            channel_max_val[VP])/FULLSCALE;                         //  into a voltage reading to be displayed in the optionsdialog.
+        current_ratio_threshold = (CURRENT_RATIO_THRESHOLD*         // Convert the digital value for the current ratio end of test threshold  
+            channel_max_val[CP])/FULLSCALE;                         //  into an ampere reading to be displayed in the optionsdialog.
         
-        sampler.setMagVoltThreshold(VOLTAGE_THRESHOLD);
-        sampler.setMagCurrentThreshold(CURRENT_THRESHOLD);
-        sampler.setVoltRatioThreshold(VOLTAGE_RATIO_THRESHOLD);
-        sampler.setCurrentRatioThreshold(CURRENT_RATIO_THRESHOLD);        
+        sampler.setMagVoltThreshold(VOLTAGE_THRESHOLD);             // Set the digital magcurve test voltage reading in sampler at which to abort.
+        sampler.setMagCurrentThreshold(CURRENT_THRESHOLD);          // Set the digital magcurve test current reading in sampler at which to abort.
+        sampler.setVoltRatioThreshold(VOLTAGE_RATIO_THRESHOLD);     // Set the digital voltage ratio reading in sampler at which to end the test. 
+        sampler.setCurrentRatioThreshold(CURRENT_RATIO_THRESHOLD);  // Set the digital current ratio reading in sampler at which to end the test.       
     }
+
+//**************************************************************
+// Initialise an array which contains the release no, magcurve volt
+// and current multiplication factor, CS setting etc. This array
+// is to be appended to the data arrays of the magcurve test. Temperory
+// solution to storing test settings while mainting compatability 
+// with previous releases.
+//**************************************************************
 
     private void initOptionsArray()
     {
@@ -133,21 +146,19 @@ public class TestControlEngine implements java.io.Serializable, ActionListener
     
     protected void setCs(int value) //!!!
     {
-//        int byte_max = parent.magcurvetest.maincurve.BYTE_MAX;
         channel_max_val[CS] = value;
-//        parent.magcurvetest.maincurve.data[byte_max + CS_SETTING] = value;
-//        System.out.println("Cs = " + channel_max_val[CS]);
     }
     
     protected void setAmpMultiplyFactor()
     {
         amp_mul_factor = channel_max_val[amp_chan_select] * CONVERSION_FACTOR/FULLSCALE;        
         settings[AMP_MUL] = amp_mul_factor;
-        
-//        System.out.println("Amp Multiply Factor: " + amp_mul_factor); 
-//        System.out.println("Magcurve Amp Multiply Factor array settings: "+settings[AMP_MUL]);
     }
      
+//***************************************************************
+// Select which channels to use for the serial port COMs
+//***************************************************************
+
     protected void setChannelSelector(int selection) //!!!
     {
         switch(selection)
@@ -172,18 +183,23 @@ public class TestControlEngine implements java.io.Serializable, ActionListener
                 break;            
         }
     }
-    
-    protected void importScalingChannels() //!!!
-    {
-    }
+
+//***************************************************************
+// Set the voltage multiplication factor for the magnetisation 
+// curve tests. The recorded digital values are multiplied by
+// this factor to determine the measured Volt reading.
+//***************************************************************
     
     protected void setVoltageMultiplyFactor(float setting)
     {  
        volt_multiply = setting;
        volt_mul_factor = (int)(setting * channel_max_val[volt_chan_select] * CONVERSION_FACTOR/FULLSCALE);
        settings[VOLT_MUL] = volt_mul_factor;
-//       System.out.println("Voltage Multiply Factor: " + volt_mul_factor);
     }
+
+//***************************************************************
+// Write the option settings at the end of the data array. 
+//***************************************************************
      
     protected void saveOptionsSettings(MagCurve m)
     {
@@ -198,6 +214,10 @@ public class TestControlEngine implements java.io.Serializable, ActionListener
         return;            
     }
     
+//***************************************************************
+// Read the settings stored in data array of the specified magcurve.
+//***************************************************************
+
     protected void importOptionsSettings(MagCurve m)
     {
         try{
@@ -209,18 +229,33 @@ public class TestControlEngine implements java.io.Serializable, ActionListener
             parent.statustextfield.setText(a.getMessage());
         }
     }        
-        
+
+//***************************************************************
+// Draw a characteristic curve of the CT as current is being injected.
+//***************************************************************
+
     protected void setUpsweepCheckbox(boolean state)
     {
        draw_upsweep = state;
        parent.maincanvas.draw_upsweep = state;
     }
         
+//***************************************************************
+// Draw characteristic curves for the CT as the tests are being 
+// conducted i.e. while the tests are in progress and not only once
+// when a test is completed which is the default procedure.
+//***************************************************************
+        
     protected void setRealTimeCheckbox(boolean state)
     {
         draw_real_time = state;
         parent.maincanvas.draw_real_time = state;        
     }
+    
+//***************************************************************
+// Setup the maincurve drawing area for the real time drawing of
+// the characteristic curve.
+//***************************************************************
     
     protected void setDrawArea(int percent)
     {
@@ -231,6 +266,119 @@ public class TestControlEngine implements java.io.Serializable, ActionListener
     {
         return drawing_area;
     }
+    
+//***************************************************************
+// Set the voltage threshold for an abort test during the magnetisation
+// curve test.
+//***************************************************************
+
+    public void setMagVoltThreshold(int i)
+    {
+        if(i <= channel_max_val[volt_chan_select])
+        {
+            int result, temp;
+            voltage_threshold = i;
+            parent.magcurvetest.setVoltageThreshold(voltage_threshold);            
+            result = (i * FULLSCALE)/channel_max_val[volt_chan_select];
+            sampler.setMagVoltThreshold(result);
+        }
+        else
+        parent.statustextfield.setText(
+                "Enter an integer value not larger than "+
+                channel_max_val[volt_chan_select]+" for the Mag Volt Threshold");                       
+    }
+
+    public int getMagVoltThreshold()
+    {
+        return voltage_threshold;
+    }
+    
+//***************************************************************
+// Set the current threshold for an abort test during the magnetisation
+// curve test.
+//***************************************************************
+    
+    public void setMagCurrentThreshold(int i)
+    {
+        int result;
+
+        if(i <= channel_max_val[amp_chan_select])
+        {
+            current_threshold = i;            
+            result = (i * FULLSCALE)/channel_max_val[amp_chan_select];        
+            sampler.setMagCurrentThreshold(result); 
+            parent.magcurvetest.setCurrentThreshold(current_threshold);            
+        }
+        else        
+        parent.statustextfield.setText(
+                "Enter an integer value not larger than "+
+                channel_max_val[amp_chan_select]+" for the Mag Current Threshold");                      
+    }
+
+    public int getMagCurrentThreshold()
+    {
+        return current_threshold;
+    }
+
+//***************************************************************
+// Set the current threshold at which to complete a Current Ratio Test.
+//***************************************************************    
+    
+    public void setCurrentRatioThreshold(int i)
+    {
+        int result;
+
+        if( i <= channel_max_val[CP])
+        {
+            current_ratio_threshold = i;            
+            parent.magcurvetest.setCurrentRatioThreshold(current_ratio_threshold);
+            result = (i * FULLSCALE)/channel_max_val[CP];        
+            sampler.setCurrentRatioThreshold(result);  
+        }
+        else 
+        {
+            parent.statustextfield.setText(
+                "Enter an integer value not larger than "+
+                channel_max_val[CP]);
+            System.out.println("Current ratio value invalid: "+i);        
+        }
+    }
+    
+    public int getCurrentRatioThreshold()
+    {
+        return current_ratio_threshold;
+    }
+
+//*********************************************************************
+// Set the voltage threshold at which to complete a Voltage Ratio Test.
+//*********************************************************************        
+    
+    public void setVoltRatioThreshold(int i)
+    {
+            int result1, result2;
+        
+        if(i <= channel_max_val[VP])
+        {
+            voltage_ratio_threshold = i;
+            parent.magcurvetest.setVoltageRatioThreshold(voltage_ratio_threshold);            
+            result2 = (i * FULLSCALE)/ channel_max_val[VP];        
+            sampler.setVoltRatioThreshold(result2);
+        }
+        else
+        parent.statustextfield.setText(
+                "Enter an integer value not larger than "+
+                channel_max_val[VP]);                       
+    }
+    
+    public int getVoltRatioThreshold()
+    {
+        return voltage_ratio_threshold;
+    }
+     
+//***************************************************************
+// Default state when application starts out i.e. the application
+// is ready to start a specified test procedure.
+//***************************************************************
     
     public void enableTests( )
     {
@@ -253,6 +401,12 @@ public class TestControlEngine implements java.io.Serializable, ActionListener
         parent.options_menu_item.setEnabled(true);
     }
     
+//***************************************************************
+// Disable the start test buttons and the assign phase buttons, the
+// abort test button remains enabled. This is the state of the test
+// buttons while a test is in progress.
+//***************************************************************
+    
     public void disableTests( )
     {
         parent.redbutton.setEnabled(false);
@@ -273,6 +427,11 @@ public class TestControlEngine implements java.io.Serializable, ActionListener
         parent.options_menu_item.setEnabled(false);        
     }
 
+//***************************************************************
+// Assign a test to one of the phases or abandon the test, this is
+// the state on the succesfull completion of a test. 
+//***************************************************************
+
     public void assignTests()
     {
         parent.redbutton.setEnabled(true);
@@ -292,6 +451,11 @@ public class TestControlEngine implements java.io.Serializable, ActionListener
         parent.mistoptest.setEnabled(true);        
         parent.options_menu_item.setEnabled(false);        
     }
+
+//***************************************************************
+// Test the current state of the application and set the Test 
+// buttons accordingly.
+//***************************************************************
 
     public void setMode(int i)
     {
@@ -330,6 +494,7 @@ public class TestControlEngine implements java.io.Serializable, ActionListener
     {
         return previous_mode;
     }
+
     
     public void startMagCurveTest()
     { 
@@ -362,6 +527,12 @@ public class TestControlEngine implements java.io.Serializable, ActionListener
         parent.ratiodialog.setVisible(false);                         
         setMode(NORMAL_MODE);       
     }
+
+//***************************************************************
+// Magnetisation Curve Test completed, store the magcurve in MagcurveTest
+// with relevant OptionsDialog settings. Draw the characteristic curve
+// for the completed test in the maincanvas.
+//***************************************************************
 
     public void wrapMagCurve(MagCurve magcurve)
     {
@@ -432,6 +603,11 @@ public class TestControlEngine implements java.io.Serializable, ActionListener
         parent.statustextfield.setText("Voltage Ratio test completed. Assign to RED, WHITE or BLUE phase. Select STOP to skip."); 
         setMode(ASSIGNPHASE);          
     }
+
+//***************************************************************
+// Assign the completed test to one of the phases. Store the test
+// and display the measured results of the assigned test.
+//***************************************************************
     
     public boolean assignPhase(int phase)
     {
@@ -507,6 +683,12 @@ public class TestControlEngine implements java.io.Serializable, ActionListener
     {
         return fullscale;
     }
+
+//***************************************************************
+// Test completed. If an error state has been recorded display a
+// descriptive message in the statustextfield else set the state 
+// of the ControlEngine to the assign to a phase state.
+//***************************************************************
 
     public void testFinished ( int status )
     {   
@@ -593,99 +775,10 @@ public class TestControlEngine implements java.io.Serializable, ActionListener
             setMode(ASSIGNPHASE);        
     }
 
-    public void setMagVoltThreshold(int i)
-    {
-        if(i <= channel_max_val[volt_chan_select])
-        {
-            int result, temp;
-            voltage_threshold = i;
-//            temp = (int) (channel_max_val[volt_chan_select] * volt_multiply);
-            parent.magcurvetest.setVoltageThreshold(voltage_threshold);            
-//            result = (i * FULLSCALE)/temp;
-            result = (i * FULLSCALE)/channel_max_val[volt_chan_select];
-            sampler.setMagVoltThreshold(result);
-        }
-        else
-        parent.statustextfield.setText(
-                "Enter an integer value not larger than "+
-                channel_max_val[volt_chan_select]+" for the Mag Volt Threshold");                       
-    }
-
-    public int getMagVoltThreshold()
-    {
-        return voltage_threshold;
-    }
-    
-    public void setMagCurrentThreshold(int i)
-    {
-        int result;
-
-        if(i <= channel_max_val[amp_chan_select])
-        {
-            current_threshold = i;            
-            result = (i * FULLSCALE)/channel_max_val[amp_chan_select];        
-            sampler.setMagCurrentThreshold(result); 
-            parent.magcurvetest.setCurrentThreshold(current_threshold);            
-        }
-        else        
-        parent.statustextfield.setText(
-                "Enter an integer value not larger than "+
-                channel_max_val[amp_chan_select]+" for the Mag Current Threshold");                      
-    }
-
-    public int getMagCurrentThreshold()
-    {
-        return current_threshold;
-    }
-    
-    public void setCurrentRatioThreshold(int i)
-    {
-        int result;
-
-        if( i <= channel_max_val[CP])
-        {
-            current_ratio_threshold = i;            
-            parent.magcurvetest.setCurrentRatioThreshold(current_ratio_threshold);
-            result = (i * FULLSCALE)/channel_max_val[CP];        
-            sampler.setCurrentRatioThreshold(result);  
-//            System.out.println("Testcontrolengine max value CP = "+ channel_max_val[CP]);            
-//            System.out.println("Testcontrolengine current ratio thres = "+ i + " digital : " + result );            
-        }
-        else 
-        {
-            parent.statustextfield.setText(
-                "Enter an integer value not larger than "+
-                channel_max_val[CP]);
-            System.out.println("Current ratio value invalid: "+i);        
-        }
-    }
-    
-    public int getCurrentRatioThreshold()
-    {
-        return current_ratio_threshold;
-    }
-    
-    public void setVoltRatioThreshold(int i)
-    {
-            int result1, result2;
-        
-        if(i <= channel_max_val[VP])
-        {
-            voltage_ratio_threshold = i;
-            parent.magcurvetest.setVoltageRatioThreshold(voltage_ratio_threshold);            
-            result2 = (i * FULLSCALE)/ channel_max_val[VP];        
-            sampler.setVoltRatioThreshold(result2);
-        }
-        else
-        parent.statustextfield.setText(
-                "Enter an integer value not larger than "+
-                channel_max_val[VP]);                       
-    }
-    
-    public int getVoltRatioThreshold()
-    {
-        return voltage_ratio_threshold;
-    }
+//***************************************************************
+// Determine which of the Test buttons were activated and service 
+// accordingly.
+//***************************************************************
     
     public void actionPerformed(ActionEvent e)
     {

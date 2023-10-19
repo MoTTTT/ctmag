@@ -134,14 +134,18 @@ public class OptionsDialog extends java.awt.Dialog
 		this.addWindowListener(aSymWindow);
 		//}}
 		ctmag = parent;
-		optionsacceptbuttonhandler = new OptionsAcceptButtonHandler(this, ctmag);
-		optionsacceptbutton.addActionListener(optionsacceptbuttonhandler);
-		
-		optionscancelbuttonhandler = new OptionsCancelButtonHandler(this, ctmag);
-		optionscancelbutton.addActionListener(optionscancelbuttonhandler);		
+		optionsbuttonhandler = new OptionsButtonHandler(this, ctmag);
+		optionsacceptbutton.addActionListener(optionsbuttonhandler);		
+		optionscancelbutton.addActionListener(optionsbuttonhandler);		
 	}
+
+//***************************************************************
+// Set the values for the thresholds in the Options Dialog as 
+// determined by the testcontrolengine. Gets called at start up
+// of the application.
+//***************************************************************
 	
-	public void instantiateFields()
+	protected void instantiateFields()
 	{
 	    timethresholdtextfield.setText(Integer.toString(
 	        ctmag.testcontrolengine.sampler.getTimeOutThreshold()));
@@ -271,6 +275,5 @@ public class OptionsDialog extends java.awt.Dialog
 
     // Declare Objects
     Ctmag ctmag;
-    OptionsCancelButtonHandler optionscancelbuttonhandler;
-    OptionsAcceptButtonHandler optionsacceptbuttonhandler;
+    OptionsButtonHandler optionsbuttonhandler;
 }

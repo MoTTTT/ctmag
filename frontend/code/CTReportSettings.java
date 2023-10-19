@@ -1,3 +1,7 @@
+//**************************************************************
+// Panel displaying the CT settings in the test report.
+//**************************************************************
+
 import java.awt.*;
 import java.beans.*;
 import symantec.itools.awt.ComboBox;

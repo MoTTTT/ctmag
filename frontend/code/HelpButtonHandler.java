@@ -1,3 +1,9 @@
+//***************************************************************
+// Determine which button was activated on the HelpDialog and act
+// accordingly i.e. step forwards or backwards through the already 
+// viewed HelpDialog HTML files.
+//***************************************************************    
+
 import java.lang.*;
 import java.awt.event.*;
 import javabrowser.BrowserInterface;

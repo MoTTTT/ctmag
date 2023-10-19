@@ -1,3 +1,8 @@
+//****************************************************************
+// Object residing in sampler. Determine whether the tested phase
+// polarity is in phase or out of phase. 
+//****************************************************************
+
 import java.lang.*;
 class Polarity extends java.lang.Object 
 {
@@ -19,6 +24,12 @@ class Polarity extends java.lang.Object
         polarity_counter = 0;
     }
     
+//****************************************************************
+// Method to test whether the received four character ASCII value
+// reflecting the value measured by channel 5 of the PROMET sensing
+// unit indicate that the phases are in phase or out of phase. 
+//****************************************************************
+    
     public boolean testPolarity(int i)
     {
         i &= MASK;
@@ -27,6 +38,11 @@ class Polarity extends java.lang.Object
         polarity_counter++;  
         return true;
     }
+ 
+//****************************************************************
+// Method employing fuzzy logic to determine whether the measured
+// phases can be considered to be in phase or out of phase. 
+//****************************************************************
     
     public int fuzzyPhaseTest()
     {

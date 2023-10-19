@@ -1,10 +1,15 @@
+//**************************************************************
+// Object ReportMainCanvas inherits from MainCanvas and draws the 
+// maincurve i.e. the characteristic curve of the CT currently 
+// being tested in the test report.
+//**************************************************************
+
 import java.awt.*;
 import java.io.*;
 
 class ReportMainCanvas extends MainCanvas 
 {
     protected final int SPACE = 10;
-//    private int fullscale;
 
     protected void initValues()
     {
@@ -30,6 +35,5 @@ class ReportMainCanvas extends MainCanvas
         x_base_y1 = y_axis_stop;    // coordinates of
         x_base_x2 = x_axis_stop;    // x-axis.
         x_base_y2 = y_axis_stop;       
-    }    
-    
+    }        
 }

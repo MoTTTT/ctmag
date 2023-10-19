@@ -1,3 +1,7 @@
+//**********************************************************************
+// Handles the saving and importing of tests.
+//**********************************************************************
+
 import java.awt.event.*;
 import java.io.*;
 import java.lang.*;
@@ -9,7 +13,6 @@ class TestHandler implements java.awt.event.ActionListener
     protected FileDialog openFileDialog1;
     private MagCurveTest magcurvetest;
     private ImportSequentialFile importsequentialfile;
-    private ImportTest importtest;
     private CreateSequentialFile createsequentialfile;
     
   
@@ -27,10 +30,10 @@ class TestHandler implements java.awt.event.ActionListener
         magcurvetest = m;
     }
     
-    public void setObjects(ImportTest i)
-    {
-        importtest = i;
-    }
+//**********************************************************************
+// Determine the source of the ActionEvent. 
+//**********************************************************************
+        
         
     public void actionPerformed(ActionEvent e)
     {                              
@@ -56,8 +59,13 @@ class TestHandler implements java.awt.event.ActionListener
             saveNoFileDialog();
         }                                
     }
+
+//**********************************************************************
+// Set up a new import FileDialog with the previous file and directory 
+// settings. Get the selected file and directory.
+//**********************************************************************    
     
-   public void importFileDialog()
+   private void importFileDialog()
     {
 		int		defMode			= openFileDialog1.getMode();
 		String	defTitle		= openFileDialog1.getTitle();
@@ -77,6 +85,10 @@ class TestHandler implements java.awt.event.ActionListener
 		    importTestFile(newDirectory + newFile);        
     }
 
+//**********************************************************************
+// Import the selected test file.
+//**********************************************************************
+
     private void importTestFile(String s)
     {
         try{
@@ -89,8 +101,31 @@ class TestHandler implements java.awt.event.ActionListener
             ctmag.statustextfield.setText("Null Pointer Exception occured when trying to import " + s);
         } 
     }
-    
-    public void saveFileDialog()
+
+//**********************************************************************
+// Save test file option selected, saves file to previously selected file
+// and directory.
+//**********************************************************************
+
+    private void saveNoFileDialog()
+    {
+		int		defMode			= openFileDialog1.getMode();
+		String	defTitle		= openFileDialog1.getTitle();
+		String  defDirectory	= openFileDialog1.getDirectory();
+		String  defFile			= openFileDialog1.getFile();
+		
+		if(defDirectory != null && defFile != null)
+		    saveTestFile(defDirectory,defFile);
+		else
+		    saveFileDialog();
+    }
+
+//**********************************************************************
+// Set up a new save test FileDialog with the previous file and directory
+// settings. Get selected file and directory.
+//**********************************************************************
+
+    private void saveFileDialog()
     {
 		int		defMode			= openFileDialog1.getMode();
 		String	defTitle		= openFileDialog1.getTitle();
@@ -109,26 +144,16 @@ class TestHandler implements java.awt.event.ActionListener
 		    saveTestFile(newDirectory,newFile);		    
     }
 
-    public void saveNoFileDialog()
-    {
-		int		defMode			= openFileDialog1.getMode();
-		String	defTitle		= openFileDialog1.getTitle();
-		String  defDirectory	= openFileDialog1.getDirectory();
-		String  defFile			= openFileDialog1.getFile();
-		
-		if(defDirectory != null && defFile != null)
-		    saveTestFile(defDirectory,defFile);
-		else
-		    saveFileDialog();
-    }
+//**********************************************************************
+// Save the test to the selected file and directory. 
+//**********************************************************************
 
-
-    public void saveTestFile(String d, String f)
+    private void saveTestFile(String d, String f)
     {
         ctmag.saveproc.saveTestSettings();
         createsequentialfile = new CreateSequentialFile(ctmag);
         createsequentialfile.setObjects(openFileDialog1);
         createsequentialfile.createFile(d,f);        
-    }    
+    }        
 }
 

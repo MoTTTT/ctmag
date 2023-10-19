@@ -1,3 +1,8 @@
+//**************************************************************
+// Panel to display the Current Ratio Test results on the front
+// end of the application.
+//**************************************************************
+ 
 import java.awt.*;
 import java.beans.*;
 import symantec.itools.awt.BorderPanel;

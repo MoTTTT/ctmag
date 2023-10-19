@@ -1,3 +1,9 @@
+//************************************************************
+// MagcurveTest contains a main magcurve representing current 
+// test data and three phase magcurves representing the assigned 
+// test data. 
+//************************************************************
+
 import java.io.*;
 class MagCurve extends Curve implements java.io.Serializable   
 {

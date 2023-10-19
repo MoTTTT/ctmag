@@ -1,3 +1,8 @@
+//**********************************************************************
+// Thread determining the time out if serial communictions not established
+// and maintained.
+//**********************************************************************
+
 import java.lang.*;
 import java.io.*;
 
@@ -13,25 +18,28 @@ public class RuningThread extends java.lang.Thread
         last_count = 0;
         this_count = 0;
     }
+
+//**********************************************************************
+// The run() method gets activated by the invocation of the thread start() 
+// method called from the sampler. The run method determines whether data
+// are being received on the serial line and whether the communication is
+// being maintained. 
+//**********************************************************************   
    
     public void run()
     {
         do
         {
-            last_count = parent.frame_cnt;
-//            System.out.println("last_count = " + last_count);
-            
+            last_count = parent.frame_cnt;            
             try
             {
                 Thread.sleep( COMMS_TIME + parent.timeout_threshold );
             }
             catch   ( InterruptedException exception )
             {
-//                System.out.println("InterruptedException of runingthread.");
                 stop();
             }
             this_count = parent.frame_cnt;
-//            System.out.println("this_count = " + this_count);
         }
         while(this_count != last_count); 
         if  ( parent.test_type != parent.NO_TEST)

@@ -1,3 +1,8 @@
+//**************************************************************
+// Test report footer. Contains a space for a signature and date
+// to be filled in.
+//**************************************************************
+
 import java.awt.*;
 import java.beans.*;
 class ReportFooter extends java.awt.Panel 

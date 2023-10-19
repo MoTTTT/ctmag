@@ -1,3 +1,7 @@
+//************************************************************
+// Serial to open connection. 
+//************************************************************
+
 import java.util.TooManyListenersException;
 import javax.comm.*;
 import java.io.*;
@@ -27,10 +31,10 @@ class SerialConnection implements java.io.Serializable, SerialPortEventListener
     private Sampler parent;
     private String comport;
     private byte in[];
-    
-    public void SerialConnection ( )
-    {
-    }
+
+//************************************************************
+// Call this method to set the serial port 
+//************************************************************    
     
     public void initSerialConnection ( Sampler parent, String port )
     {
@@ -39,11 +43,12 @@ class SerialConnection implements java.io.Serializable, SerialPortEventListener
 	    in = new byte [BUFFER_SIZE];
 	    comport = port;
     }
+
+//************************************************************
+// Open serial connection. Return indicator to calling method 
+// in sampler.
+//************************************************************    
   
-    public void setPort(String s)
-    {
-        comport = s;
-    }
     public int openConnection()
     {
         Enumeration ports= CommPortIdentifier.getPortIdentifiers();
@@ -117,6 +122,11 @@ class SerialConnection implements java.io.Serializable, SerialPortEventListener
 	    open = true;
 	    return  ( NO_ERROR );
     }
+
+//************************************************************
+// Close the serial connection, return indicator to calling 
+// method in sampler.
+//************************************************************    
     
     public int closeConnection()
     {
@@ -146,6 +156,10 @@ class SerialConnection implements java.io.Serializable, SerialPortEventListener
 	   return open;
     }
 
+//************************************************************
+// Return the number of bytes availabe on the input stream.
+//************************************************************
+
     public int getAvail ( )
     {
         int i;
@@ -163,6 +177,12 @@ class SerialConnection implements java.io.Serializable, SerialPortEventListener
         }
         return  ( i );
     }
+
+//************************************************************
+// If bytes available on the inputstream exceeds a set threshold,
+// then discard the bytes below threshold and process the 
+// remainder i.e. call framehandler in sampler.
+//************************************************************
     
     public void processData ( )
     {
@@ -200,6 +220,11 @@ class SerialConnection implements java.io.Serializable, SerialPortEventListener
         for ( i=0; i< i_max; i++ )
 		   	parent.frameHandler( in[i] );            
     }
+
+//************************************************************
+// The method serialEvent services the serial communications
+// port. Calls the method processData().
+//************************************************************
 
     public void serialEvent(SerialPortEvent e)
     {

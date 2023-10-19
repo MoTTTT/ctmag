@@ -1,5 +1,10 @@
+//**************************************************************
+// Gets instantiated and called by TestHandler.
+//**************************************************************
+
 import java.io.*;
 import java.awt.FileDialog;
+
 class CreateSequentialFile implements java.io.Serializable  
 {
     private MagCurveTest magcurvetest;
@@ -16,31 +21,12 @@ class CreateSequentialFile implements java.io.Serializable
     {
        openFileDialog1 = f; 
     }    
-    
-    
-/*    public void createFile()
-    {
-       try{
-           dataoutputstream = new DataOutputStream(
-                   new FileOutputStream(magcurvetest.getTestname()));
 
-           ObjectOutputStream p = new ObjectOutputStream(dataoutputstream);
-           p.writeObject (magcurvetest);  // Write serializable object to file
-           p.flush();
-           dataoutputstream.close();
-           ctmag.statustextfield.setText("Writing serialized test to \"" + magcurvetest.getTestname() + "\" in the current working directory.");           
-       }
-       catch (FileNotFoundException fnfe){
-            ctmag.statustextfield.setText("An error occured when trying to save to the filename entered in the \"Test Name\" textfield.");
-       }
+//**************************************************************
+// Write a serialised instance of the MagCurveTest to the file 
+// and directory passed to the method by TestHandler. 
+//**************************************************************
 
-       catch (IOException e){
-            ctmag.statustextfield.setText(e + " : An error occurred in writing to the file \"" + magcurvetest.getTestname()+ "\"");
-       }
-       
-
-    }
-*/    
     public void createFile(String d, String f)
     {
        try{

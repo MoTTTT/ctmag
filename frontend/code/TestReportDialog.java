@@ -1,3 +1,8 @@
+//**************************************************************
+// Dialog window container in which the test report is displayed
+// with buttons to select whether the report is to be printed. 
+//**************************************************************
+
 import java.awt.*;
 import symantec.itools.awt.BorderPanel;
 import java.awt.event.*;

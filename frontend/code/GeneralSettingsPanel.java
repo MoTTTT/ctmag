@@ -1,3 +1,8 @@
+//**************************************************************
+// Panel displaying the General settings on the front end of
+// the application.
+//**************************************************************
+
 import java.awt.*;
 import java.beans.*;
 class GeneralSettingsPanel extends java.awt.Panel 

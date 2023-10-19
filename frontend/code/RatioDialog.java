@@ -1,3 +1,8 @@
+//************************************************************
+// Dialog box to display the measured ratio and polarity at an 
+// end of test. 
+//************************************************************
+
 import java.awt.*;
 import java.awt.event.*;
 class RatioDialog extends java.awt.Dialog 

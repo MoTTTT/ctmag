@@ -1,3 +1,8 @@
+//*****************************************************************
+// Provide the window container in which the HTML help files are
+// to be displayed.
+//*****************************************************************
+
 import java.awt.*;
 import java.awt.event.*;
 public class HelpDialog extends java.awt.Dialog implements java.awt.event.ActionListener 

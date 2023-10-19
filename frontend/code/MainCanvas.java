@@ -1,9 +1,15 @@
+//****************************************************************
+// Main Canvas on which the characteristic curve for the currently 
+// running magnetisation curve test gets drawn.
+//****************************************************************
+
 import java.awt.*;
 import java.io.*;
 class MainCanvas extends java.awt.Canvas 
 {
-    private int max_last_current;
-    private int max_last_voltage;
+    protected boolean real_time;
+    protected boolean draw_real_time;
+    protected boolean draw_upsweep;    
     
     protected final int SPACE = 10;
     protected final int FULLSCALE = 1024;
@@ -29,27 +35,19 @@ class MainCanvas extends java.awt.Canvas
     protected int x_string_y1;
     protected int y_string_y1;
     protected int y_string_x1;
+    protected int voltage_threshold;
+    protected int current_threshold;
 
     protected String x_string = "Amp";
     protected String y_string = "Volt";
-    
-    private int display_data[][];
-    protected int testnonzero;
-    protected int begin;
-    protected int end;
-    
-    protected boolean real_time;
-    protected boolean draw_real_time;
-    protected boolean draw_upsweep;
-
+        
     protected float x_axis_increment;
     protected float y_axis_increment;
     
-    protected int voltage_threshold;
-    protected int current_threshold;
-    private Graphics main_graphics;
     private int hi_current;
-
+    private int max_last_current;
+    private int max_last_voltage;
+    private int display_data[][];
     private int rt_c1;
     private int rt_c2;
     private int rt_v1;
@@ -70,8 +68,7 @@ class MainCanvas extends java.awt.Canvas
     }
     
     protected void initValues()
-    {
-        
+    {        
         canvaswidth = getSize().width;
         canvasheight = getSize().height;
 
@@ -92,8 +89,7 @@ class MainCanvas extends java.awt.Canvas
         x_base_x1 = x_axis_start;   // xy start & stop
         x_base_y1 = y_axis_stop;    // coordinates of
         x_base_x2 = x_axis_stop;    // x-axis.
-        x_base_y2 = y_axis_stop;
-       
+        x_base_y2 = y_axis_stop;       
     }
         
     protected void initMagCurveString()
@@ -104,21 +100,20 @@ class MainCanvas extends java.awt.Canvas
         y_string_y1 = y_axis_start + getFont().getSize();        
         y_string_x1 = 5;
     }
-   
-    private void testGraphicsObject()
-    {
-        main_graphics.drawString("test realtime drawing.", 60, 20);        
-    }
     
+//****************************************************************
+// Paint method gets called idirectly via repaint(). Seperate the
+// real time paint from the non-real time paint. 
+//****************************************************************
+   
     public void paint (Graphics g)
     {
-        main_graphics = g;
         if  ( real_time )
         {
             real_time = false;
             if  ( !draw_real_time )
                 return;
-            main_graphics.drawLine(x_axis_start+(int)(rt_c1* x_axis_increment),
+            g.drawLine(x_axis_start+(int)(rt_c1* x_axis_increment),
                 y_axis_stop-(int)(rt_v1* y_axis_increment),
                 x_axis_start+(int)(rt_c2* x_axis_increment),
                 y_axis_stop-(int)(rt_v2* y_axis_increment));
@@ -146,7 +141,6 @@ class MainCanvas extends java.awt.Canvas
     {
         max_last_current = current;
         max_last_voltage = voltage;
-//        System.out.println("max_last_current = "+max_last_current+ " max_last_voltage = "+max_last_voltage);
     }
     
     public void setFullScaleIncrements(int fullscale)
@@ -154,6 +148,10 @@ class MainCanvas extends java.awt.Canvas
         max_last_current = (fullscale-1);
         max_last_voltage = (fullscale-1);
     }       
+
+//****************************************************************
+// Gets called by sampler at start of magcurvetest.
+//****************************************************************
 
     protected void setupMainCurve(int drawing_area)
     {        
@@ -164,6 +162,14 @@ class MainCanvas extends java.awt.Canvas
         resetData();
         repaint();
     }
+    
+//****************************************************************
+// Called by sampler while a magcurve test is in progress. Add a 
+// curve point to the canvas data arrays. If the up curve is to be
+// drawn it gets called during both the up and down curves. If real
+// time drawing is to be employed the paint method is called via
+// repaint().
+//****************************************************************
     
     protected void addCurvePoint (int curve_id, int c1, int v1, int c2, int v2)
     {
@@ -186,18 +192,27 @@ class MainCanvas extends java.awt.Canvas
         }
     }
 
+//****************************************************************
+// If real time drawing is to be employed, do not clear the screen
+// i.e. do not call super.update . 
+//****************************************************************
+
     public void update(Graphics g)
     {
         if(real_time) paint(g);                           
         else super.update(g);            
     }
+
+//****************************************************************
+// Method gets called to draw the maincurve for an imported test.
+// Only draw the down curve on an imported test.
+//****************************************************************    
     
     protected void drawMainCurve(Curve c)
     {
         fullscale = c.getFullscale();
         voltage_threshold = c.getLastVoltage();    //***
         current_threshold = c.getLastCurrent();    //***        
-//        display_data[1] = new int[fullscale];
         resetData();
         for (int i = 0; i < fullscale; i++)
         {
@@ -205,38 +220,6 @@ class MainCanvas extends java.awt.Canvas
         }
         repaint();
     }
-    
-    public int testNonZeroData(int testdata[], int limit)
-    {
-        for(int a = 0; a < limit; a++)
-        {
-            if (testdata[a] > 0)
-                return a;
-        }
-        return -1;
-    }
-    
-//    protected void testGraph()  // Method to check whether the graph
-  //  {                           // is drawn correct.
-    //    int zoom_factor = 100, size;
-      //  size = FULLSCALE/zoom_factor;
-        //fullscale = size;
-        
-//        x_axis_increment = (float)x_axis_length / (size-1);
- //      y_axis_increment = (float)y_axis_length / (size-1);  
-//
-    //    display_data = new int[size];
-  //      int k = 0;
-      //   for (int i = 0; i < size; i++)
-//        {
-  //         display_data[i] = k;                
-    //       k++;
-      //  }   
-        //voltage_threshold = display_data[size-1];    //***
-//        current_threshold = size-1;    //***  
-  //      setIncrements(current_threshold, voltage_threshold);         
-    //    
-    //}
     
     public void resetData()
     {        
@@ -246,6 +229,13 @@ class MainCanvas extends java.awt.Canvas
            display_data[1][i] = 0;
         }
     }
+    
+//****************************************************************
+// Set current and voltage thresholds, used to accurrately draw upto
+// the maximum measured current and voltage readings without a line drawn 
+// down to zero voltage at the end of the graph i.e. only draw the 
+// graph upto the maximum reading.
+//****************************************************************
     
     protected void setThresholds(Curve c)
     {
@@ -259,9 +249,13 @@ class MainCanvas extends java.awt.Canvas
         }            
     }
     
+//****************************************************************
+// Draw both the up and down sweeps of the main curve. Up sweep in 
+// in green, down sweep in black.
+//****************************************************************
+    
     protected void displayData(Graphics g)
     {      
-//        testGraph();  // Method to test if a linear line is drawn correct
     int c0, c1, j;
         c0= 0;
         g.setColor(Color.green);        

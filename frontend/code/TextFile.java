@@ -1,3 +1,7 @@
+//**************************************************************
+//
+//**************************************************************
+
 import java.lang.*;
 import java.util.Calendar;
 import java.util.Date;
@@ -76,6 +80,12 @@ public class TextFile extends java.lang.Object
         ctmag = c;  
         four_digits = new DecimalFormat("0000");        
     }
+ 
+ //**************************************************************
+// Update the General and CT settings for the application. Read
+// in and convert the current and voltage readings for the 
+// completed magnetisation curve tests.
+//**************************************************************
     
     private void updateData()
     {
@@ -106,12 +116,13 @@ public class TextFile extends java.lang.Object
         ctvarating = ctmag.magcurvetest.getCTVarating();
     }
     
+//**************************************************************
+// Convert the captured magnetisation curve data sets into voltage
+//and current representations reflecting multiplication factors.
+//**************************************************************
+ 
     private void updateMagcurveArrays()
     {
-//        int amp_scale = ctmag.testcontrolengine.AMP_CHANNEL1_SCALE;
-  //      int volt_scale = ctmag.testcontrolengine.VOLT_CHANNEL1_SCALE;
-    //    int fullscale = ctmag.testcontrolengine.FULLSCALE;
-
         int amp_mul_factor, volt_mul_factor;
         int volt_mul_index = ctmag.testcontrolengine.FULLSCALE + 1 + ctmag.testcontrolengine.VOLT_MUL;
         int amp_mul_index = ctmag.testcontrolengine.FULLSCALE + 1 + ctmag.testcontrolengine.AMP_MUL;
@@ -210,21 +221,24 @@ public class TextFile extends java.lang.Object
         }
     } 
     
+//**************************************************************
+// Copy data from a source array into a target array.
+//**************************************************************
+ 
     private void populateArrays(int source_array[], int target_array[][], int size, int volt_factor, int amp_factor, int conversion_factor)
     {
-//        int amp_scale = ctmag.testcontrolengine.AMP_CHANNEL1_SCALE;
-  //      int volt_scale = ctmag.testcontrolengine.VOLT_CHANNEL1_SCALE;
-    //    int fullscale = ctmag.testcontrolengine.FULLSCALE;
-        
         for(int x = 0; x < size; x++)
         {
-//           target_array[AMP][x] = x * amp_scale/fullscale;
-  //         target_array[VOLT][x] = source_array[x] * volt_scale/fullscale;            
            target_array[AMP][x] = x * amp_factor/conversion_factor;
            target_array[VOLT][x] = source_array[x] * volt_factor/conversion_factor;            
         }            
     }
     
+//**************************************************************
+// Write the text file information into the indicated file as a 
+// stream of 8-bit bytes. 
+//**************************************************************
+ 
     public void createTextFile(String d, String f)
     {
         
@@ -246,7 +260,11 @@ public class TextFile extends java.lang.Object
             ctmag.statustextfield.setText(e + " : An error occurred in writing to the file " + d + f);
        }       
     }    
-    
+
+//**************************************************************
+// Write the General settings into the text file.
+//**************************************************************
+     
     private void writeGeneralSettings()
     {
        try{
@@ -263,6 +281,10 @@ public class TextFile extends java.lang.Object
         }        
     }
 
+//**************************************************************
+// Write the CT settings into the text file.
+//**************************************************************
+ 
     private void writeCTSettings()
     {
        try{
@@ -278,6 +300,11 @@ public class TextFile extends java.lang.Object
         catch (java.io.IOException e){
         }        
     }
+    
+//**************************************************************
+// Write the main curve and 3 phase curve data sets to the text 
+// file. 
+//**************************************************************    
     
     private void writeArrayConversions()
     {

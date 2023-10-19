@@ -29,9 +29,7 @@ public class Ctmag extends java.awt.Frame
     public void newMagCurveTest()
     {        
         magcurvetest = new MagCurveTest();
-//        testcontrolengine = new TestControlEngine(this);    
-        optionsdialog.instantiateFields(); 
-        optionsdialog.optionsacceptbuttonhandler.getSelection();
+        optionsdialog.optionsbuttonhandler.getSelection();
         magcurvetest.setVoltageThreshold(testcontrolengine.voltage_threshold);
         magcurvetest.setCurrentThreshold(testcontrolengine.current_threshold);
         magcurvetest.setVoltageRatioThreshold(testcontrolengine.voltage_ratio_threshold);
@@ -41,22 +39,10 @@ public class Ctmag extends java.awt.Frame
     
     private void passObjects()
     {
-
-    // Pass TestControlEngine to TestButtonHandlers
-//        redbuttonhandler.setObjects(testcontrolengine);
-//        whitebuttonhandler.setObjects(testcontrolengine);
-//        bluebuttonhandler.setObjects(testcontrolengine);
-//        magcurvebuttonhandler.setObjects(testcontrolengine);
-//        currentbuttonhandler.setObjects(testcontrolengine);
-//        voltagebuttonhandler.setObjects(testcontrolengine);
-//        stopbuttonhandler.setObjects(testcontrolengine);  
-
         printreportbuttonhandler.setObjects(magcurvetest);
-
         voltageratioresultshandler.setObjects(magcurvetest);
         currentratioresultshandler.setObjects(magcurvetest);
         magcurveresultshandler.setObjects(magcurvetest);
-
         saveproc.setObjects(magcurvetest);
         importtest.setObjects(magcurvetest);
     }
@@ -484,7 +470,7 @@ public class Ctmag extends java.awt.Frame
 		voltageratioresults = new VoltageRatioResults();
 		resultspanel3.add(voltageratioresults);
 		
-		// Implement Button Handlers
+		// Implement Action Button Handlers
 		
 		printreportbuttonhandler = new PrintReportButtonHandler(this);
 		printreportbutton.addActionListener(printreportbuttonhandler);
@@ -495,9 +481,8 @@ public class Ctmag extends java.awt.Frame
 		testhandler = new TestHandler(this);
 		importtestbutton.addActionListener(testhandler);
 		savetestbutton.addActionListener(testhandler);
-		
-        
-        // Menu handlers
+		        
+        // Menu item handlers
 		miopentest.addActionListener(testhandler);
 		misavetest.addActionListener(testhandler);
 		misavetestas.addActionListener(testhandler);
@@ -513,9 +498,6 @@ public class Ctmag extends java.awt.Frame
         magcurveresultshandler = new MagCurveResultsHandler(this);
         currentratioresultshandler = new CurrentRatioResultsHandler(this);
         voltageratioresultshandler = new VoltageRatioResultsHandler(this);
-
-	    //  implement new menu item handlers				
-        saveproc = new SaveProc(this);
 
 		// implement new dialog boxes
 
@@ -562,6 +544,8 @@ public class Ctmag extends java.awt.Frame
         
         ratiodialog = new RatioDialog(this, false);
         
+        // Instantiate objects 
+        saveproc = new SaveProc(this);
         importtest = new ImportTest(this);
         
         maincanvas = new MainCanvas();
@@ -570,8 +554,11 @@ public class Ctmag extends java.awt.Frame
         phasecanvas = new PhaseCanvas();
         curvespanel.add(phasecanvas); 
         
-        testcontrolengine = new TestControlEngine(this);    //!!!        
+        testcontrolengine = new TestControlEngine(this);    //!!! 
+        optionsdialog.instantiateFields();         
         newMagCurveTest();
+        
+        // Pass handles to the test buttons and menu items
 		redbutton.addActionListener(testcontrolengine);
 		whitebutton.addActionListener(testcontrolengine);
 		bluebutton.addActionListener(testcontrolengine);
@@ -590,14 +577,12 @@ public class Ctmag extends java.awt.Frame
 		mistoptest.addActionListener(testcontrolengine);
 		miactionnewtest.addActionListener(testcontrolengine);        
 		minewtest.addActionListener(testcontrolengine);        
+        minexttest.addActionListener(testcontrolengine);
         
         helpcontentshandler = new HelpContentsHandler(this);
         mihelpcontents.addActionListener(helpcontentshandler);
         kneepointtablehandler = new KneePointTableHandler(this);
-        
-//        nexttesthandler = new NextTestHandler(this);
-        minexttest.addActionListener(testcontrolengine);
-        
+                
         textfilehandler = new TextFileHandler(this); 
         mitextfile.addActionListener(textfilehandler);
 	}

@@ -1,8 +1,13 @@
+//************************************************************
+// Characteristic curves for the 3 phases are to be displayed 
+// on this canvas in the report.
+//************************************************************
+
 class ReportPhaseCanvas extends PhaseCanvas 
 {
     protected final int SPACE = 12;
-//    private int fullscale;
-    
+
+    // Initialise the positioning values for the canvas header.
     protected void initMagCurveString()
     {        
         x_string_x1 = (canvaswidth/2) - ((x_string.length()/2)*5);
@@ -12,9 +17,9 @@ class ReportPhaseCanvas extends PhaseCanvas
         y_string_x1 = 5;
     }    
     
+    //Initialise the relevant dimensional values for the report canvas
     protected void initValues()
-    {
-        
+    {        
         canvaswidth = getSize().width;
         canvasheight = getSize().height;
 

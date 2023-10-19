@@ -1,3 +1,8 @@
+//**************************************************************
+// Panel to display the results for the magnetisation curve tests
+// in the test report.
+//**************************************************************
+ 
 import java.awt.*;
 import java.beans.*;
 import symantec.itools.awt.BorderPanel;
@@ -84,5 +89,4 @@ public class MagCurveReportResults extends java.awt.Panel
 	java.awt.TextField bluekneevolttextfield;
 	java.awt.TextField bluekneeamptextfield;
 	//}}
-
 }

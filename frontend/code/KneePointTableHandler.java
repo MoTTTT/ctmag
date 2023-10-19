@@ -1,8 +1,12 @@
+//**************************************************************
+// Handler to fill out the magcurvetest table in the report. Only
+// fill in the fields for tests that have been assigned to a phase.
+//**************************************************************
+
 import java.lang.*;
 public class KneePointTableHandler extends java.lang.Object
 {
-    Ctmag ctmag;
-//    private int scaling_factor;
+    private Ctmag ctmag;
     
     private final int SEVENTY = 70;
     private final int HUNDRED = 100;
@@ -14,6 +18,11 @@ public class KneePointTableHandler extends java.lang.Object
     {
        ctmag = c;      
     }
+    
+//**************************************************************
+// Method gets called when a test is imported. Only fill in the 
+// table for the tests that have been assigned to a phase. 
+//**************************************************************
     
     public void doThreePhaseTable()
     {
@@ -42,15 +51,23 @@ public class KneePointTableHandler extends java.lang.Object
         }            
     }
     
+//**************************************************************
+// Do not fill in a table for a phase with a 0 current reading
+// at the kneepoint.
+//**************************************************************
+    
     public void doTable(int phase, int volt_factor, int amp_factor, int conversion_factor)
     {
         int temp;
-//        scaling_factor = ctmag.testcontrolengine.scaling_factor;
         
         temp = ctmag.magcurvetest.vimagcurve[phase].knee.getX();
         if(temp > 0)
             doPhaseTable(temp,phase,volt_factor,amp_factor,conversion_factor);
     }
+
+//**************************************************************
+// Enter the values for the specified phase into the report table.
+//**************************************************************
     
     public void doPhaseTable(int knee_current, int phase, int volt_factor, int amp_factor, int conversion_factor)
     {
@@ -163,6 +180,11 @@ public class KneePointTableHandler extends java.lang.Object
                     break;  
         }
     }
+    
+//**************************************************************
+// Method to clear the fields in the reporttable for a specified
+// phase.
+//**************************************************************
     
     public void clearTable(int phase)
     {

@@ -1,3 +1,9 @@
+//************************************************************
+// Instantiate a HelpDialog and BrowserInterface. BrowserInterface
+// is thirdparty code allowing for the browsing of HTML help
+// files.
+//************************************************************
+
 import java.lang.*;
 import java.awt.event.*;
 import java.net.*;
@@ -9,17 +15,13 @@ public class HelpContentsHandler extends java.lang.Object implements java.awt.ev
     HelpDialog helpdialog;
     BrowserInterface browserinterface;
     URL url;
-//    ForwardButtonHandler forwardbuttonhandler;
-//    BackButtonHandler backbuttonhandler;
     HelpButtonHandler helpbuttonhandler;
     
     public HelpContentsHandler(Ctmag c)
     {
         ctmag = c;
         try {            
-        url = new URL("file:///magtest/docs/index.html");
-//        url1 = new URL("file:///mctest/docs/setup.html");
-        
+        url = new URL("file:///magtest/docs/index.html");        
         }
         catch(MalformedURLException murl)
         {
@@ -41,10 +43,5 @@ public class HelpContentsHandler extends java.lang.Object implements java.awt.ev
         helpbuttonhandler = new HelpButtonHandler(helpdialog, browserinterface);        
         helpdialog.forwardbutton.addActionListener(helpbuttonhandler);
         helpdialog.backbutton.addActionListener(helpbuttonhandler);        
-        
-//        forwardbuttonhandler = new ForwardButtonHandler(browserinterface);        
-//        backbuttonhandler = new BackButtonHandler(browserinterface);
-//        helpdialog.forwardbutton.addActionListener(forwardbuttonhandler);
-//        helpdialog.backbutton.addActionListener(backbuttonhandler);        
     }    
 }

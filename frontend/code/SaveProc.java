@@ -1,18 +1,22 @@
+//**************************************************************
+// Object that saves the General, CT and VT settings to file.
+//**************************************************************
+
 import java.lang.*;
 public class SaveProc extends java.lang.Object
 {
     private Ctmag ctmag;
     private MagCurveTest magcurvetest;
     
-  public SaveProc(Ctmag f)
-  {
-    ctmag = f;
-  }
+    public SaveProc(Ctmag f)
+    {
+        ctmag = f;
+    }
   
-  public void setObjects(MagCurveTest m)
-  {
-    magcurvetest = m;    
-  }
+    public void setObjects(MagCurveTest m)
+    {
+        magcurvetest = m;    
+    }
 
     public void saveTestSettings()
     {

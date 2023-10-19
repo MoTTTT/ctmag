@@ -1,3 +1,8 @@
+//************************************************************
+// Handler to fill in the fields of the displayed TestReport
+// and generate a PrintJob to print the report to hardcopy.
+//************************************************************
+
 import java.awt.event.*;
 import java.util.*;
 import java.awt.*;
@@ -36,12 +41,15 @@ class PrintReportButtonHandler implements java.awt.event.ActionListener//, java.
         ctmag.saveproc.saveTestSettings();
         getReportValues();
         ctmag.testreportdialog.setVisible(true); 
-        ctmag.statustextfield.setText("Select \"OK\" in ReportDialog to proceed with printing options, \"Cancel\" to exit printing." );
-        
+        ctmag.statustextfield.setText("Select \"OK\" in ReportDialog to proceed with printing options, \"Cancel\" to exit printing." );        
     }
 
+//*******************************************************************
+// Insert settings values into the appropriate textfields of the TestReport.
+//*******************************************************************
+
     private void getReportValues()
-    {
+    {        
         report_date = new Date(ctmag.magcurvetest.date.getTime());
         datestring = report_date.toString();
         timestring = DateFormat.getTimeInstance().format(ctmag.magcurvetest.date);
@@ -90,7 +98,12 @@ class PrintReportButtonHandler implements java.awt.event.ActionListener//, java.
             ctmag.reportphasecanvas.readDataIn(
                         ctmag.magcurvetest.vimagcurve[i], i);
     }
-    
+
+//*******************************************************************
+// Method initiate and execute a print job. Renders a Graphics object
+// to a print device.
+//*******************************************************************
+
     public void printReport()
     { 
         printproperties = new Properties();
@@ -113,5 +126,5 @@ class PrintReportButtonHandler implements java.awt.event.ActionListener//, java.
             ctmag.testreportdialog.testreportholdingpanel.setSize(dimension.getSize());            
             pjob.end();
         }
-      }
     }
+}

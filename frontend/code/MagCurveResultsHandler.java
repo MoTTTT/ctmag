@@ -1,3 +1,7 @@
+//**************************************************************
+// Gets called from TestControlEngine and ImportTest.
+//**************************************************************
+
 import java.lang.*;
 class MagCurveResultsHandler extends java.lang.Object 
 {
@@ -36,6 +40,11 @@ class MagCurveResultsHandler extends java.lang.Object
         mainkneeamp = magcurvetest.maincurve.getKneePoint().getX();
         ctmag.magcurveresults.mainkneeamptextfield.setText("" + mainkneeamp * amp_factor / conversion_factor + "mA");
     }   
+
+//**************************************************************
+// Display the magnetisation curve results for the specified 
+// phases on both the front panel and in the report. 
+//**************************************************************
     
     public void showMagCurvePhase(int phase,int volt_factor, int amp_factor, int conversion_factor)
     {
@@ -61,42 +70,42 @@ class MagCurveResultsHandler extends java.lang.Object
         }
     }
     
-    public void setRedKneeVolt(int volt_factor, int conversion_factor)
+    private void setRedKneeVolt(int volt_factor, int conversion_factor)
     {
         redkneevolt = magcurvetest.vimagcurve[magcurvetest.RED].getKneePoint().getY();
         ctmag.magcurveresults.redkneevolttextfield.setText("" + redkneevolt * volt_factor/conversion_factor + "V");
         ctmag.reportmagcurveresults.redkneevolttextfield.setText("" + redkneevolt * volt_factor/conversion_factor + "V");        
     }
 
-    public void setWhiteKneeVolt(int volt_factor, int conversion_factor)
+    private void setWhiteKneeVolt(int volt_factor, int conversion_factor)
     {
         whitekneevolt = magcurvetest.vimagcurve[magcurvetest.WHITE].getKneePoint().getY();
         ctmag.magcurveresults.whitekneevolttextfield.setText("" + whitekneevolt * volt_factor/conversion_factor + "V");
         ctmag.reportmagcurveresults.whitekneevolttextfield.setText("" + whitekneevolt * volt_factor/conversion_factor + "V");
     }
 
-    public void setBlueKneeVolt(int volt_factor, int conversion_factor)
+    private void setBlueKneeVolt(int volt_factor, int conversion_factor)
     {
         bluekneevolt = magcurvetest.vimagcurve[magcurvetest.BLUE].getKneePoint().getY();
         ctmag.magcurveresults.bluekneevolttextfield.setText("" + bluekneevolt * volt_factor/conversion_factor + "V");
         ctmag.reportmagcurveresults.bluekneevolttextfield.setText("" + bluekneevolt * volt_factor/conversion_factor + "V");
     }
     
-    public void setRedKneeAmp(int amp_factor, int conversion_factor)
+    private void setRedKneeAmp(int amp_factor, int conversion_factor)
     {
         redkneeamp = magcurvetest.vimagcurve[magcurvetest.RED].getKneePoint().getX();
         ctmag.magcurveresults.redkneeamptextfield.setText("" + redkneeamp * amp_factor / conversion_factor + "mA");
         ctmag.reportmagcurveresults.redkneeamptextfield.setText("" + redkneeamp * amp_factor / conversion_factor + "mA");
     }    
 
-    public void setWhiteKneeAmp(int amp_factor, int conversion_factor)
+    private void setWhiteKneeAmp(int amp_factor, int conversion_factor)
     {
         whitekneeamp = magcurvetest.vimagcurve[magcurvetest.WHITE].getKneePoint().getX();
         ctmag.magcurveresults.whitekneeamptextfield.setText("" + whitekneeamp * amp_factor / conversion_factor + "mA");
         ctmag.reportmagcurveresults.whitekneeamptextfield.setText("" + whitekneeamp * amp_factor / conversion_factor + "mA");
     }    
 
-    public void setBlueKneeAmp(int amp_factor, int conversion_factor)
+   private void setBlueKneeAmp(int amp_factor, int conversion_factor)
    {    
         bluekneeamp = magcurvetest.vimagcurve[magcurvetest.BLUE].getKneePoint().getX();
         ctmag.magcurveresults.bluekneeamptextfield.setText("" + bluekneeamp * amp_factor / conversion_factor + "mA");

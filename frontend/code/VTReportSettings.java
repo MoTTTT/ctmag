@@ -1,3 +1,7 @@
+//**************************************************************
+// Voltage Transformer settings to be displayed in the report.
+//**************************************************************
+
 import java.awt.*;
 import java.beans.*;
 import symantec.itools.awt.ComboBox;
